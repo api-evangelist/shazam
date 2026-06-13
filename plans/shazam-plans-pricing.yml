@@ -1,0 +1,223 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Shazam
+providerId: shazam
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Music
+  - Audio Recognition
+  - Song Identification
+  - Charts
+  - RapidAPI
+  - Plans
+description: >-
+  Shazam's official developer framework (ShazamKit) is available at no additional cost to Apple
+  Developer Program members ($99/year for individuals, $299/year for organizations). The third-party
+  Shazam REST API on RapidAPI (apidojo) offers tiered paid plans based on monthly request volume
+  with a 7-day free trial of up to 50 requests. Overage charges apply at $0.0162435 per request
+  beyond the included quota.
+notes: ShazamKit requires an Apple Developer account. The RapidAPI Shazam endpoint is a third-party
+  wrapper; Apple does not offer a direct public REST API for song recognition.
+sources:
+  - https://developer.apple.com/shazamkit/
+  - https://rapidapi.com/apidojo/api/shazam/pricing
+  - https://zylalabs.com/api-marketplace/music/shazam+api/2219
+plans:
+  - id: shazamkit-apple-developer
+    name: ShazamKit (Apple Developer Program)
+    type: subscription
+    description: Official Apple ShazamKit framework access included with Apple Developer Program membership.
+      Supports iOS, macOS, tvOS, visionOS, watchOS, and Android. No per-request charges.
+    entries:
+      - label: Apple Developer Program (Individual)
+        name: apple_dev_individual
+        type: flat
+        metric: year
+        limit: -1
+        timeFrame: annual
+        geo: global
+        unit: 1
+        price: 99
+        userMultiplied: false
+      - label: Apple Developer Program (Organization)
+        name: apple_dev_org
+        type: flat
+        metric: year
+        limit: -1
+        timeFrame: annual
+        geo: global
+        unit: 1
+        price: 299
+        userMultiplied: false
+    elements:
+      - name: JWT developer token authentication
+      - name: Media identifier and private key via Apple Developer portal
+      - name: iOS, macOS, tvOS, visionOS, watchOS SDKs
+      - name: Android ShazamKit SDK
+      - name: Shazam catalog recognition
+      - name: Custom audio catalog support
+      - name: No per-request charges
+
+  - id: shazam-rapidapi-trial
+    name: Trial (RapidAPI)
+    type: free
+    description: 7-day free trial with up to 50 requests on the third-party Shazam REST API on RapidAPI.
+    entries:
+      - label: Trial Requests
+        name: trial_requests
+        type: flat
+        metric: requests
+        limit: 50
+        timeFrame: trial
+        geo: global
+        unit: 1
+        price: 0
+        userMultiplied: false
+    elements:
+      - name: X-RapidAPI-Key authentication
+      - name: Song recognition endpoint
+      - name: 7-day trial period
+
+  - id: shazam-rapidapi-basic
+    name: Basic (RapidAPI)
+    type: subscription
+    description: Entry-level paid plan for the Shazam REST API on RapidAPI with 2,000 monthly requests.
+    entries:
+      - label: Monthly Subscription
+        name: basic_subscription
+        type: flat
+        metric: month
+        limit: 2000
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 24.99
+        userMultiplied: false
+      - label: Overage per request
+        name: basic_overage
+        type: variable
+        metric: requests
+        limit: -1
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 0.0162435
+        userMultiplied: false
+    elements:
+      - name: 2,000 requests/month included
+      - name: 60 requests/minute rate limit
+      - name: X-RapidAPI-Key authentication
+
+  - id: shazam-rapidapi-pro
+    name: Pro (RapidAPI)
+    type: subscription
+    description: Mid-tier plan for the Shazam REST API with 5,000 monthly requests and 60 req/min rate limit.
+    entries:
+      - label: Monthly Subscription
+        name: pro_subscription
+        type: flat
+        metric: month
+        limit: 5000
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 49.99
+        userMultiplied: false
+      - label: Overage per request
+        name: pro_overage
+        type: variable
+        metric: requests
+        limit: -1
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 0.0162435
+        userMultiplied: false
+    elements:
+      - name: 5,000 requests/month included
+      - name: 60 requests/minute rate limit
+      - name: X-RapidAPI-Key authentication
+
+  - id: shazam-rapidapi-pro-plus
+    name: Pro Plus (RapidAPI)
+    type: subscription
+    description: Higher-volume plan with 15,000 monthly requests and increased rate limit of 120 req/min.
+    entries:
+      - label: Monthly Subscription
+        name: proplus_subscription
+        type: flat
+        metric: month
+        limit: 15000
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 99.99
+        userMultiplied: false
+      - label: Overage per request
+        name: proplus_overage
+        type: variable
+        metric: requests
+        limit: -1
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 0.0162435
+        userMultiplied: false
+    elements:
+      - name: 15,000 requests/month included
+      - name: 120 requests/minute rate limit
+      - name: X-RapidAPI-Key authentication
+
+  - id: shazam-rapidapi-premium
+    name: Premium (RapidAPI)
+    type: subscription
+    description: High-volume plan with 50,000 monthly requests and 120 req/min rate limit.
+    entries:
+      - label: Monthly Subscription
+        name: premium_subscription
+        type: flat
+        metric: month
+        limit: 50000
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 199.99
+        userMultiplied: false
+      - label: Overage per request
+        name: premium_overage
+        type: variable
+        metric: requests
+        limit: -1
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 0.0162435
+        userMultiplied: false
+    elements:
+      - name: 50,000 requests/month included
+      - name: 120 requests/minute rate limit
+      - name: X-RapidAPI-Key authentication
+
+  - id: shazam-rapidapi-enterprise
+    name: Enterprise (RapidAPI)
+    type: custom
+    description: Enterprise plan with custom volume, pricing, and rate limits for large-scale deployments.
+    entries:
+      - label: Annual Contract
+        name: enterprise_contract
+        type: flat
+        metric: year
+        limit: -1
+        timeFrame: annual
+        geo: global
+        unit: 1
+        price: 10000
+        userMultiplied: false
+    elements:
+      - name: Custom request volume
+      - name: Custom rate limits
+      - name: Dedicated support
+      - name: SLA guarantees

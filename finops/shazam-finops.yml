@@ -1,0 +1,103 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Shazam
+providerId: shazam
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Music
+  - Audio Recognition
+  - Song Identification
+  - Charts
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: >-
+  FOCUS-aligned FinOps profile for Shazam API consumption. Two cost models exist: (1) Apple ShazamKit
+  is bundled within the Apple Developer Program subscription ($99/year individual, $299/year org) with
+  no per-request charges; (2) the third-party Shazam REST API on RapidAPI uses tiered subscription
+  pricing ($24.99–$999.99/month) with pay-as-you-go overage at $0.0162435 per successful request
+  beyond the included quota. Cost optimization centers on minimizing failed recognition attempts and
+  right-sizing the RapidAPI subscription tier to actual monthly volume.
+notes: Only successful HTTP 200 responses count against RapidAPI monthly quotas. Cache recognition
+  results by audio fingerprint to avoid redundant API calls and reduce costs.
+sources:
+  - https://developer.apple.com/shazamkit/
+  - https://rapidapi.com/apidojo/api/shazam/pricing
+  - https://zylalabs.com/api-marketplace/music/shazam+api/2219
+  - https://www.finops.org/framework/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Shazam (Apple Inc.)
+serviceCategory: Music Recognition
+billingModel:
+  pricingCategory: Subscription + Overage
+  billingFrequency: Monthly (RapidAPI) / Annual (Apple Developer Program)
+  billingCurrency: USD
+  chargeCategories:
+    - Subscription
+    - Usage
+focusColumns:
+  ServiceName: Shazam API
+  ServiceCategory: Music Recognition
+  ProviderName: Apple Inc. / RapidAPI
+  PublisherName: Apple Inc.
+  InvoiceIssuerName: Apple Inc. / RapidAPI Hub Inc.
+  BillingCurrency: USD
+  ChargeCategory: Subscription
+meters:
+  - name: song_recognition_requests
+    description: Number of successful song recognition API calls (POST audio to detect endpoint)
+    unit: requests
+    billedUnit: per request (overage)
+    pricingModel: Included in subscription quota; $0.0162435/request overage
+    notes: Only HTTP 200 responses count against quota and overage billing.
+
+  - name: chart_requests
+    description: Number of chart data API calls (top tracks by country, city, genre)
+    unit: requests
+    billedUnit: per request (overage)
+    pricingModel: Included in subscription quota; $0.0162435/request overage
+    notes: Counted against same monthly quota as recognition requests.
+
+  - name: artist_track_metadata_requests
+    description: Number of artist profile and track metadata API calls
+    unit: requests
+    billedUnit: per request (overage)
+    pricingModel: Included in subscription quota; $0.0162435/request overage
+    notes: Counted against same monthly quota as recognition requests.
+
+costOptimization:
+  strategies:
+    - name: Cache recognition results
+      description: Cache audio fingerprint-to-track mappings to avoid re-calling the recognition
+        endpoint for previously identified audio segments.
+      impact: high
+
+    - name: Right-size subscription tier
+      description: Monitor actual monthly request volume and select the RapidAPI tier whose included
+        quota closely matches usage to avoid paying for unused capacity or incurring overage charges.
+      impact: high
+
+    - name: Minimize failed requests
+      description: Only successful HTTP 200 responses count against quota; pre-validate audio length
+        (3-5 seconds optimal) and format before submitting to avoid 400/422 errors that still
+        consume API call budget on some providers.
+      impact: medium
+
+    - name: Use ShazamKit for client-side apps
+      description: For iOS/macOS/Android apps, prefer ShazamKit over the RapidAPI wrapper since
+        ShazamKit has no per-request charges and Apple processes recognition server-side at no
+        additional cost to the developer.
+      impact: high
+
+    - name: Batch chart data with caching
+      description: Chart data changes infrequently; cache chart responses for 30–60 minutes to
+        reduce redundant requests against the monthly quota.
+      impact: medium

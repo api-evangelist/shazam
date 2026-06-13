@@ -1,0 +1,96 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Shazam
+providerId: shazam
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Music
+  - Audio Recognition
+  - Song Identification
+  - Charts
+  - RapidAPI
+  - Rate Limiting
+  - Quotas
+description: >-
+  ShazamKit (Apple's official framework) does not publish explicit rate limits; usage is bounded
+  by Apple Developer Program terms. The third-party Shazam REST API on RapidAPI enforces per-minute
+  rate limits that vary by subscription tier (60 req/min on Basic and Pro; 120 req/min on Pro Plus
+  and Premium; 240 req/min on Elite and Ultimate) plus monthly quota caps. Exceeding limits returns
+  HTTP 429. Only successful HTTP 200 responses count against monthly quotas.
+notes: RapidAPI rate limits apply to the third-party apidojo Shazam wrapper. ShazamKit has no
+  documented per-request throttle beyond Apple Developer Program terms of service.
+sources:
+  - https://rapidapi.com/apidojo/api/shazam/pricing
+  - https://docs.rapidapi.com/v2.0/docs/api-pricing
+  - https://zylalabs.com/api-marketplace/music/shazam+api/2219
+responseCodes:
+  throttled: 429
+limits:
+  - name: Basic plan — requests per minute
+    scope: application
+    metric: requests
+    limit: 60 per 1 minute
+    notes: Applies to Basic and Pro subscription tiers on RapidAPI.
+
+  - name: Pro plan — requests per minute
+    scope: application
+    metric: requests
+    limit: 60 per 1 minute
+    notes: Same throttle as Basic; monthly quota increases to 5,000 requests.
+
+  - name: Pro Plus plan — requests per minute
+    scope: application
+    metric: requests
+    limit: 120 per 1 minute
+    notes: Applies to Pro Plus and Premium subscription tiers.
+
+  - name: Premium plan — requests per minute
+    scope: application
+    metric: requests
+    limit: 120 per 1 minute
+    notes: Same throttle as Pro Plus; monthly quota increases to 50,000 requests.
+
+  - name: Elite plan — requests per minute
+    scope: application
+    metric: requests
+    limit: 240 per 1 minute
+    notes: Applies to Elite (200,000 req/month) tier.
+
+  - name: Ultimate plan — requests per minute
+    scope: application
+    metric: requests
+    limit: 240 per 1 minute
+    notes: Applies to Ultimate (1,000,000 req/month) tier.
+
+  - name: Basic monthly quota
+    scope: application
+    metric: requests
+    limit: 2000 per 1 month
+    notes: Only HTTP 200 successful responses count against quota.
+
+  - name: Pro monthly quota
+    scope: application
+    metric: requests
+    limit: 5000 per 1 month
+    notes: Only HTTP 200 successful responses count against quota.
+
+  - name: Pro Plus monthly quota
+    scope: application
+    metric: requests
+    limit: 15000 per 1 month
+    notes: Only HTTP 200 successful responses count against quota.
+
+  - name: Premium monthly quota
+    scope: application
+    metric: requests
+    limit: 50000 per 1 month
+    notes: Only HTTP 200 successful responses count against quota.
+
+  - name: Trial quota
+    scope: application
+    metric: requests
+    limit: 50 per trial
+    notes: 7-day free trial; only successful requests count.

@@ -1,0 +1,147 @@
+aid: shazam
+name: Shazam
+description: Shazam is Apple's music recognition service that identifies songs from audio
+  fingerprints. The Shazam API provides song recognition, music charts, and artist and
+  track metadata retrieval. Originally launched in 2002 and acquired by Apple in 2018,
+  Shazam processes over 1 billion song identifications per month. Official developer
+  access is available via Apple's ShazamKit framework for iOS, macOS, tvOS, visionOS,
+  watchOS, and Android. A third-party REST API is also available through RapidAPI for
+  song detection, chart data, and artist lookups.
+type: Index
+position: Consuming
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Music
+  - Audio Recognition
+  - Song Identification
+  - Charts
+  - Artists
+  - Tracks
+  - Fingerprinting
+created: '2024-01-01'
+modified: '2026-06-13'
+url: https://raw.githubusercontent.com/api-evangelist/shazam/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: shazam:shazamkit
+    name: ShazamKit
+    description: ShazamKit is Apple's official framework for integrating Shazam music recognition
+      into iOS, macOS, tvOS, visionOS, watchOS, and Android applications. It supports matching
+      audio against Shazam's global music catalog or custom audio catalogs built from prerecorded
+      content. Authentication uses a JWT developer token signed with a Media Services private
+      key created in the Apple Developer account. Audio signatures are generated client-side and
+      never shared with Apple, preserving user privacy.
+    humanURL: https://developer.apple.com/shazamkit/
+    baseURL: https://developer.apple.com/shazamkit/
+    tags:
+      - Music Recognition
+      - Audio Fingerprinting
+      - iOS SDK
+      - Android SDK
+      - Custom Catalogs
+      - Media Library
+    properties:
+      - type: Documentation
+        url: https://developer.apple.com/shazamkit/
+      - type: SDKDocumentation
+        url: https://developer.apple.com/documentation/shazamkit/
+      - type: AndroidSDK
+        url: https://developer.apple.com/download/all/?q=Android%20ShazamKit
+      - type: Authentication
+        url: https://developer.apple.com/help/account/capabilities/create-a-media-identifier-and-private-key/
+      - type: GettingStarted
+        url: https://developer.apple.com/help/account/services/shazamkit/
+      - type: DesignGuidelines
+        url: https://developer.apple.com/design/human-interface-guidelines/shazamkit
+    features:
+      - type: MusicRecognition
+        description: Identify songs from audio samples against Shazam's global catalog of over 1 billion tracks
+      - type: CustomCatalogs
+        description: Build recognition catalogs from prerecorded audio for podcasts, videos, and custom content
+      - type: AudioSync
+        description: Determine match position within a song for synchronized second-screen experiences
+      - type: MediaLibrary
+        description: Maintain a persistent library of user's Shazam discoveries within the app
+      - type: CrossPlatform
+        description: Native SDKs for all Apple platforms (iOS, macOS, tvOS, visionOS, watchOS) and Android
+    useCases:
+      - type: SongIdentification
+        description: Identify currently playing music in a listening environment
+      - type: SecondScreen
+        description: Sync app content with broadcast audio or prerecorded media
+      - type: PodcastEnhancement
+        description: Add interactive overlays timed to podcast audio segments
+      - type: MusicDiscovery
+        description: Surface song metadata and streaming links upon recognition
+
+  - aid: shazam:shazam-rest-api
+    name: Shazam REST API (RapidAPI)
+    description: A REST API for Shazam available on RapidAPI that provides song identification
+      from audio files or URLs, music charts by country and genre, artist profiles, track metadata,
+      and related content. Authentication uses an API key passed as the X-RapidAPI-Key header.
+      The base URL is shazam.p.rapidapi.com. Endpoints cover song recognition, charts,
+      artists, and search across Shazam's catalog.
+    humanURL: https://rapidapi.com/apidojo/api/shazam
+    baseURL: https://shazam.p.rapidapi.com
+    tags:
+      - Song Detection
+      - Charts
+      - Artists
+      - Tracks
+      - Search
+      - REST
+      - RapidAPI
+    properties:
+      - type: Documentation
+        url: https://rapidapi.com/apidojo/api/shazam
+      - type: Pricing
+        url: https://rapidapi.com/apidojo/api/shazam/pricing
+      - type: Plans
+        url: plans/shazam-plans-pricing.yml
+      - type: RateLimits
+        url: rate-limits/shazam-rate-limits.yml
+      - type: FinOps
+        url: finops/shazam-finops.yml
+    features:
+      - type: SongDetection
+        description: POST audio file or URL to identify song; returns track title, artist, album, genre, artwork, and streaming links
+      - type: MusicCharts
+        description: Retrieve top songs by country, city, and genre from Shazam's chart data
+      - type: ArtistProfiles
+        description: Access artist metadata including biography, top tracks, and related artists
+      - type: TrackMetadata
+        description: Retrieve full track details including ISRC, lyrics, cover art, and streaming platform links
+      - type: Search
+        description: Full-text search across Shazam's catalog for tracks and artists
+    useCases:
+      - type: MusicIdentification
+        description: Build apps that identify songs from microphone input or uploaded audio clips
+      - type: ChartMonitoring
+        description: Track trending music by region and genre for playlist curation or analytics
+      - type: MusicMetadataEnrichment
+        description: Enrich audio content with structured metadata for cataloging and recommendation
+      - type: ContentModeration
+        description: Identify copyrighted music in user-generated content
+common:
+  - type: Website
+    url: https://www.shazam.com
+  - type: Developer
+    url: https://developer.apple.com/shazamkit/
+  - type: GitHubOrganization
+    url: https://github.com/shazamio
+  - type: Authentication
+    url: https://developer.apple.com/help/account/capabilities/create-a-media-identifier-and-private-key/
+  - type: TermsOfService
+    url: https://www.apple.com/legal/internet-services/terms/site.html
+  - type: PrivacyPolicy
+    url: https://www.apple.com/legal/privacy/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/shazam
+  - type: Twitter
+    url: https://twitter.com/Shazam
+  - type: Forum
+    url: https://developer.apple.com/forums/tags/shazamkit
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
