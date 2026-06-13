@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/shazam/main/json-schema/shazam-track.json",
+  "title": "Shazam Track",
+  "description": "A music track as returned by the Shazam API, including metadata, artwork, and streaming links.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Shazam numeric track identifier",
+      "example": "549952578"
+    },
+    "type": {
+      "type": "string",
+      "description": "Resource type",
+      "enum": ["MUSIC"]
+    },
+    "title": {
+      "type": "string",
+      "description": "Track title",
+      "example": "Blinding Lights"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Artist name",
+      "example": "The Weeknd"
+    },
+    "isrc": {
+      "type": "string",
+      "description": "International Standard Recording Code",
+      "pattern": "^[A-Z]{2}[A-Z0-9]{3}[0-9]{7}$",
+      "example": "USUG12004076"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Canonical Shazam web URL for this track"
+    },
+    "images": {
+      "type": "object",
+      "description": "Artwork image URLs",
+      "properties": {
+        "background": {
+          "type": "string",
+          "format": "uri"
+        },
+        "coverart": {
+          "type": "string",
+          "format": "uri"
+        },
+        "coverarthq": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "share": {
+      "type": "object",
+      "description": "Social sharing metadata",
+      "properties": {
+        "subject": { "type": "string" },
+        "text": { "type": "string" },
+        "href": { "type": "string", "format": "uri" },
+        "image": { "type": "string", "format": "uri" },
+        "twitter": { "type": "string" },
+        "html": { "type": "string", "format": "uri" },
+        "avatar": { "type": "string", "format": "uri" },
+        "snapchat": { "type": "string", "format": "uri" }
+      }
+    },
+    "hub": {
+      "type": "object",
+      "description": "Streaming platform links and actions",
+      "properties": {
+        "type": { "type": "string" },
+        "image": { "type": "string", "format": "uri" },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "id": { "type": "string" },
+              "uri": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "caption": { "type": "string" },
+              "actions": {
+                "type": "array",
+                "items": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "description": "Track metadata sections (e.g. song info, lyrics, related)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string" },
+          "tabname": { "type": "string" },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": { "type": "string" },
+                "text": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["key", "title", "subtitle"]
+}

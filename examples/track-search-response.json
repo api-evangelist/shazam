@@ -1,0 +1,29 @@
+{
+  "tracks": {
+    "hits": [
+      {
+        "track": {
+          "layout": "5",
+          "type": "MUSIC",
+          "key": "549952578",
+          "title": "Blinding Lights",
+          "subtitle": "The Weeknd",
+          "share": {
+            "subject": "Blinding Lights - The Weeknd",
+            "text": "I used Shazam to discover Blinding Lights by The Weeknd.",
+            "href": "https://www.shazam.com/track/549952578/blinding-lights",
+            "image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9a/19/93/9a19939a-6c33-31d3-09e4-1e41f3745f3e/source/400x400bb.jpg"
+          },
+          "images": {
+            "coverart": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9a/19/93/9a19939a-6c33-31d3-09e4-1e41f3745f3e/source/400x400bb.jpg",
+            "coverarthq": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/9a/19/93/9a19939a-6c33-31d3-09e4-1e41f3745f3e/source/800x800bb.jpg"
+          },
+          "url": "https://www.shazam.com/track/549952578/blinding-lights"
+        }
+      }
+    ]
+  },
+  "artists": {
+    "hits": []
+  }
+}

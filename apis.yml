@@ -103,6 +103,8 @@ apis:
         url: rate-limits/shazam-rate-limits.yml
       - type: FinOps
         url: finops/shazam-finops.yml
+      - type: OpenAPI
+        url: openapi/shazam-rest-api-openapi.yml
     features:
       - type: SongDetection
         description: POST audio file or URL to identify song; returns track title, artist, album, genre, artwork, and streaming links

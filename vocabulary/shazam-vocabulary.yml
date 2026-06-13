@@ -1,0 +1,88 @@
+vocabulary:
+  name: Shazam API Vocabulary
+  description: >
+    Domain terms used across the Shazam API — covering recognition, music metadata,
+    charting, and streaming platform integration.
+  terms:
+    - term: Track
+      definition: >
+        A recorded music work identified by a Shazam numeric key. Contains title, artist
+        (subtitle), ISRC, artwork URLs, streaming platform links, and section metadata.
+      properties:
+        - key: Shazam numeric track identifier
+        - title: Track title
+        - subtitle: Primary artist name
+        - isrc: International Standard Recording Code
+
+    - term: Artist
+      definition: >
+        A musician or group in the Shazam/Apple Music catalog, identified by a numeric
+        artist ID. Includes name, genre labels, and artwork.
+      properties:
+        - artistId: Numeric Shazam/Apple Music artist identifier
+        - name: Display name
+        - genreNames: Array of genre labels
+
+    - term: Album
+      definition: >
+        A music album in the Shazam/Apple Music catalog. Includes artist name,
+        release date, track count, genre labels, and artwork.
+
+    - term: AudioSignature
+      definition: >
+        A compact fingerprint derived from a short audio sample using Shazam's
+        proprietary algorithm. Encoded as a URI-safe string and sent to the
+        recognition endpoint. Never contains raw audio data.
+
+    - term: Recognition
+      definition: >
+        The process of matching an audio signature against Shazam's catalog of
+        over 1 billion tracks to identify the playing song.
+
+    - term: PlaylistId
+      definition: >
+        An opaque identifier (Apple Music playlist ID) for a Shazam chart, obtained
+        from the chart locations service. Used to retrieve chart tracks.
+
+    - term: Chart
+      definition: >
+        A ranked list of the most-Shazam'd songs, scoped by world, country, city,
+        or genre. Backed by Apple Music playlists.
+
+    - term: ListeningCounter
+      definition: >
+        The cumulative count of times a track has been identified via Shazam
+        globally. Exposed per-track via the count service.
+
+    - term: Hub
+      definition: >
+        The streaming platform section of a track object. Contains actions and
+        provider links for Apple Music, Spotify, YouTube, and other services.
+
+    - term: ISRC
+      definition: >
+        International Standard Recording Code — a globally unique identifier for
+        a specific sound recording, formatted as CC-XXX-YY-NNNNN.
+
+    - term: GenreMusic
+      definition: >
+        Enumerated Shazam genre identifiers. Values include POP (1), HIP_HOP_RAP (2),
+        DANCE (3), ELECTRONIC (4), RNB_SOUL (5), ALTERNATIVE (6), ROCK (7),
+        LATIN (8), FILM_TV_STAGE (9), COUNTRY (10), AFRO_BEATS (11), WORLDWIDE (12),
+        REGGAE_DANCE_HALL (13), HOUSE (14), K_POP (15), FRENCH_POP (16),
+        SINGER_SONGWRITER (17), REGIONAL_MEXICANO (18).
+
+    - term: EndpointCountry
+      definition: >
+        ISO 3166-1 alpha-2 country code that scopes catalog and chart responses to a
+        geographic region (e.g. US, GB, DE). Passed as a path parameter.
+
+    - term: Language
+      definition: >
+        BCP-47 language tag controlling the locale of returned metadata
+        (e.g. en-US, de-DE, ja-JP). Passed as a path parameter.
+
+    - term: RapidAPIKey
+      definition: >
+        API key issued by RapidAPI for the apidojo/shazam endpoint. Passed as the
+        X-RapidAPI-Key HTTP header. Used for the publicly available REST wrapper.

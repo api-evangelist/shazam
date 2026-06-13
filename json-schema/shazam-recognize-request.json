@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/shazam/main/json-schema/shazam-recognize-request.json",
+  "title": "Shazam Recognize Request",
+  "description": "Request payload submitted to the Shazam recognition endpoint. Contains an encoded audio fingerprint/signature and session metadata.",
+  "type": "object",
+  "properties": {
+    "timezone": {
+      "type": "string",
+      "description": "IANA timezone of the client",
+      "example": "America/New_York"
+    },
+    "signature": {
+      "type": "object",
+      "description": "Encoded audio fingerprint",
+      "required": ["uri", "samplems"],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "description": "Base64/URI-encoded audio signature generated from the audio sample"
+        },
+        "samplems": {
+          "type": "integer",
+          "description": "Duration of the audio sample used to generate the signature, in milliseconds",
+          "minimum": 1,
+          "example": 4000
+        }
+      }
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix timestamp in milliseconds at which the audio capture was taken",
+      "example": 1700000000000
+    },
+    "context": {
+      "type": "object",
+      "description": "Optional context metadata attached to the recognition request"
+    },
+    "geolocation": {
+      "type": "object",
+      "description": "Optional geographic location of the client",
+      "properties": {
+        "altitude": {
+          "type": "number",
+          "description": "Altitude in meters"
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Latitude in decimal degrees",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude in decimal degrees",
+          "minimum": -180,
+          "maximum": 180
+        }
+      }
+    }
+  },
+  "required": ["signature", "timestamp"]
+}

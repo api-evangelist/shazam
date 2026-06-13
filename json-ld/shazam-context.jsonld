@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "shazam": "https://www.shazam.com/ontology#",
+    "track": {
+      "@id": "shazam:Track",
+      "@type": "@id"
+    },
+    "artist": {
+      "@id": "shazam:Artist",
+      "@type": "@id"
+    },
+    "album": {
+      "@id": "shazam:Album",
+      "@type": "@id"
+    },
+    "trackId": "shazam:trackId",
+    "artistId": "shazam:artistId",
+    "albumId": "shazam:albumId",
+    "isrc": "shazam:isrc",
+    "shazamKey": "shazam:key",
+    "coverArtUrl": {
+      "@id": "shazam:coverArtUrl",
+      "@type": "@id"
+    },
+    "listeningCount": "shazam:listeningCount",
+    "chartPosition": "shazam:chartPosition",
+    "chartCountry": "shazam:chartCountry",
+    "chartGenre": "shazam:chartGenre",
+    "recognitionTimestamp": {
+      "@id": "shazam:recognitionTimestamp",
+      "@type": "xsd:dateTime"
+    },
+    "audioSignatureUri": "shazam:audioSignatureUri",
+    "streamingLinks": "shazam:streamingLinks",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "name": "schema:name",
+    "description": "schema:description",
+    "image": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "genre": "schema:genre",
+    "byArtist": {
+      "@id": "schema:byArtist",
+      "@type": "@id"
+    },
+    "inAlbum": {
+      "@id": "schema:inAlbum",
+      "@type": "@id"
+    },
+    "datePublished": "schema:datePublished",
+    "identifier": "schema:identifier"
+  }
+}
