@@ -142,7 +142,7 @@ common:
     url: https://www.linkedin.com/company/shazam
   - type: Twitter
     url: https://twitter.com/Shazam
-  - type: Forum
+  - type: Forums
     url: https://developer.apple.com/forums/tags/shazamkit
 maintainers:
   - FN: Kin Lane
