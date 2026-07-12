@@ -126,6 +126,10 @@ apis:
       - type: ContentModeration
         description: Identify copyrighted music in user-generated content
 common:
+  - type: DomainSecurity
+    url: security/shazam-domain-security.yml
+  - type: Authentication
+    url: authentication/shazam-authentication.yml
   - type: Website
     url: https://www.shazam.com
   - type: Developer

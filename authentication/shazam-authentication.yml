@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/shazam-rest-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: RapidAPIKey
+  type: apiKey
+  in: header
+  parameter: X-RapidAPI-Key
+  description: RapidAPI key for the apidojo/shazam endpoint on rapidapi.com
+  sources:
+  - openapi/shazam-rest-api-openapi.yml
+- name: ShazamPlatformHeader
+  type: apiKey
+  in: header
+  parameter: X-Shazam-Platform
+  description: Internal Shazam platform identifier (e.g. IPHONE)
+  sources:
+  - openapi/shazam-rest-api-openapi.yml
