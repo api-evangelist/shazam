@@ -126,6 +126,8 @@ apis:
       - type: ContentModeration
         description: Identify copyrighted music in user-generated content
 common:
+  - type: AgenticAccess
+    url: agentic-access/shazam-agentic-access.yml
   - type: DomainSecurity
     url: security/shazam-domain-security.yml
   - type: Authentication

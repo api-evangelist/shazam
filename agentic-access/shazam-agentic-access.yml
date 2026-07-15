@@ -1,0 +1,142 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/shazam-rest-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 12
+  by_action_class:
+    acting: 1
+    connected: 11
+  by_consequence:
+    write: 1
+    read: 11
+  human_in_the_loop_required: 0
+operations:
+- path: /discovery/v5/{language}/{endpoint_country}/{device}/-/tag/{uuid_1}/{uuid_2}
+  method: post
+  operationId: recognizeTrack
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /discovery/v5/{language}/{endpoint_country}/web/-/track/{track_id}
+  method: get
+  operationId: getTrack
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/amapi/v1/catalog/{endpoint_country}/playlists/{playlist_id}/tracks
+  method: get
+  operationId: getPlaylistTracks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/charts/locations
+  method: get
+  operationId: getChartLocations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/search/v4/{language}/{endpoint_country}/web/search
+  method: get
+  operationId: searchArtists
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/search/v3/{language}/{endpoint_country}/web/search
+  method: get
+  operationId: searchTracks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/amapi/v1/catalog/{endpoint_country}/artists/{artist_id}
+  method: get
+  operationId: getArtist
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/amapi/v1/catalog/{endpoint_country}/artists/{artist_id}/albums
+  method: get
+  operationId: getArtistAlbums
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/amapi/v1/catalog/{endpoint_country}/albums/{album_id}
+  method: get
+  operationId: getAlbum
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /shazam/v3/{language}/{endpoint_country}/web/-/tracks/track-similarities-id-{track_id}
+  method: get
+  operationId: getRelatedTracks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/count/v2/web/track/{track_id}
+  method: get
+  operationId: getListeningCounter
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /services/count/v2/web/track
+  method: get
+  operationId: getListeningCounterMany
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
