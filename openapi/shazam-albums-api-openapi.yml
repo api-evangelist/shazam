@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Shazam REST Albums API
+  description: 'The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).
+
+    '
+  version: 5.0.0
+  contact:
+    name: Shazam Developer (via Apple / ShazamKit)
+    url: https://developer.apple.com/shazamkit/
+  x-rapidapi-provider: apidojo
+  x-rapidapi-hub: https://rapidapi.com/apidojo/api/shazam
+servers:
+- url: https://www.shazam.com
+  description: Primary Shazam web API
+- url: https://amp.shazam.com
+  description: Shazam recognition endpoint
+- url: https://cdn.shazam.com
+  description: Shazam CDN (related tracks)
+security:
+- RapidAPIKey: []
+tags:
+- name: Albums
+  description: Album metadata
+paths:
+  /services/amapi/v1/catalog/{endpoint_country}/albums/{album_id}:
+    get:
+      operationId: getAlbum
+      summary: Get album info
+      description: Retrieve metadata for an album by its Shazam ID.
+      tags:
+      - Albums
+      parameters:
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: album_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1234567890
+      responses:
+        '200':
+          description: Album metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+components:
+  schemas:
+    Album:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: albums
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            artistName:
+              type: string
+            releaseDate:
+              type: string
+              format: date
+            trackCount:
+              type: integer
+            genreNames:
+              type: array
+              items:
+                type: string
+            artwork:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+  parameters:
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
+  securitySchemes:
+    RapidAPIKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI key for the apidojo/shazam endpoint on rapidapi.com
+    ShazamPlatformHeader:
+      type: apiKey
+      in: header
+      name: X-Shazam-Platform
+      description: Internal Shazam platform identifier (e.g. IPHONE)

@@ -1,0 +1,284 @@
+openapi: 3.0.3
+info:
+  title: Shazam REST Albums Charts API
+  description: 'The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).
+
+    '
+  version: 5.0.0
+  contact:
+    name: Shazam Developer (via Apple / ShazamKit)
+    url: https://developer.apple.com/shazamkit/
+  x-rapidapi-provider: apidojo
+  x-rapidapi-hub: https://rapidapi.com/apidojo/api/shazam
+servers:
+- url: https://www.shazam.com
+  description: Primary Shazam web API
+- url: https://amp.shazam.com
+  description: Shazam recognition endpoint
+- url: https://cdn.shazam.com
+  description: Shazam CDN (related tracks)
+security:
+- RapidAPIKey: []
+tags:
+- name: Charts
+  description: Music charts by country, city, and genre
+paths:
+  /services/amapi/v1/catalog/{endpoint_country}/playlists/{playlist_id}/tracks:
+    get:
+      operationId: getPlaylistTracks
+      summary: Get tracks from a chart playlist
+      description: 'Retrieve the tracks in a Shazam chart playlist. Used for top world tracks, top country tracks, top city tracks, and genre charts. The playlist_id is obtained from the chart locations service.
+
+        '
+      tags:
+      - Charts
+      parameters:
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: playlist_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Shazam playlist identifier for the chart
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 200
+          maximum: 200
+        description: Maximum number of tracks to return
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset
+      - name: l
+        in: query
+        schema:
+          type: string
+          default: en-US
+        description: Language code
+      - name: relate[songs]
+        in: query
+        schema:
+          type: string
+          default: artists,music-videos
+      responses:
+        '200':
+          description: List of chart tracks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaylistTracksResponse'
+  /services/charts/locations:
+    get:
+      operationId: getChartLocations
+      summary: Get chart location and genre playlist IDs
+      description: 'Returns the full catalog of chart playlist IDs organized by country, city, and genre. Use the returned IDs with the playlist tracks endpoint.
+
+        '
+      tags:
+      - Charts
+      responses:
+        '200':
+          description: Chart locations and playlist IDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationsResponse'
+components:
+  schemas:
+    Track:
+      type: object
+      properties:
+        layout:
+          type: string
+        type:
+          type: string
+          example: MUSIC
+        key:
+          type: string
+          description: Shazam track ID
+          example: '549952578'
+        title:
+          type: string
+          example: Blinding Lights
+        subtitle:
+          type: string
+          description: Artist name
+          example: The Weeknd
+        images:
+          type: object
+          properties:
+            background:
+              type: string
+              format: uri
+            coverart:
+              type: string
+              format: uri
+            coverarthq:
+              type: string
+              format: uri
+        share:
+          type: object
+          properties:
+            subject:
+              type: string
+            text:
+              type: string
+            href:
+              type: string
+              format: uri
+            image:
+              type: string
+              format: uri
+            twitter:
+              type: string
+            html:
+              type: string
+              format: uri
+            avatar:
+              type: string
+              format: uri
+            snapchat:
+              type: string
+              format: uri
+        hub:
+          type: object
+          description: Streaming platform links (Apple Music, Spotify, etc.)
+          properties:
+            type:
+              type: string
+            image:
+              type: string
+              format: uri
+            actions:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  type:
+                    type: string
+                  id:
+                    type: string
+                  uri:
+                    type: string
+                    format: uri
+            options:
+              type: array
+              items:
+                type: object
+            providers:
+              type: array
+              items:
+                type: object
+                properties:
+                  caption:
+                    type: string
+                  images:
+                    type: object
+                  actions:
+                    type: array
+                    items:
+                      type: object
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              metapages:
+                type: array
+                items:
+                  type: object
+              tabname:
+                type: string
+              metadata:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    text:
+                      type: string
+        url:
+          type: string
+          format: uri
+          description: Shazam web URL for this track
+        isrc:
+          type: string
+          description: International Standard Recording Code
+          example: USUG12004076
+    PlaylistTracksResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+        next:
+          type: string
+          format: uri
+    LocationsResponse:
+      type: object
+      description: Chart locations indexed by country and genre
+      properties:
+        countries:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              listid:
+                type: string
+              name:
+                type: string
+              cities:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    listid:
+                      type: string
+                    name:
+                      type: string
+        genres:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              listid:
+                type: string
+              name:
+                type: string
+  parameters:
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
+  securitySchemes:
+    RapidAPIKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI key for the apidojo/shazam endpoint on rapidapi.com
+    ShazamPlatformHeader:
+      type: apiKey
+      in: header
+      name: X-Shazam-Platform
+      description: Internal Shazam platform identifier (e.g. IPHONE)

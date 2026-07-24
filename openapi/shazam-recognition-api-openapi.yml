@@ -1,0 +1,315 @@
+openapi: 3.0.3
+info:
+  title: Shazam REST Albums Recognition API
+  description: 'The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).
+
+    '
+  version: 5.0.0
+  contact:
+    name: Shazam Developer (via Apple / ShazamKit)
+    url: https://developer.apple.com/shazamkit/
+  x-rapidapi-provider: apidojo
+  x-rapidapi-hub: https://rapidapi.com/apidojo/api/shazam
+servers:
+- url: https://www.shazam.com
+  description: Primary Shazam web API
+- url: https://amp.shazam.com
+  description: Shazam recognition endpoint
+- url: https://cdn.shazam.com
+  description: Shazam CDN (related tracks)
+security:
+- RapidAPIKey: []
+tags:
+- name: Recognition
+  description: Audio fingerprint recognition against the Shazam catalog
+paths:
+  /discovery/v5/{language}/{endpoint_country}/{device}/-/tag/{uuid_1}/{uuid_2}:
+    post:
+      operationId: recognizeTrack
+      summary: Recognize a track from an audio fingerprint
+      description: 'Submit an audio fingerprint (encoded URI signature) to the Shazam recognition engine. Returns track metadata including title, artist, album, genre, artwork, ISRC, and streaming platform links when a match is found.
+
+        '
+      servers:
+      - url: https://amp.shazam.com
+      tags:
+      - Recognition
+      parameters:
+      - $ref: '#/components/parameters/language'
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: device
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - iphone
+          - android
+          - web
+        description: Client device type
+      - name: uuid_1
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: Random UUID (session identifier)
+      - name: uuid_2
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: Random UUID (request identifier)
+      - name: sync
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: webv3
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: sampling
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: shazamapiversion
+        in: query
+        schema:
+          type: string
+          default: v3
+      - name: video
+        in: query
+        schema:
+          type: string
+          default: v3
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecognizeRequest'
+      responses:
+        '200':
+          description: Recognition result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecognizeResponse'
+components:
+  schemas:
+    Track:
+      type: object
+      properties:
+        layout:
+          type: string
+        type:
+          type: string
+          example: MUSIC
+        key:
+          type: string
+          description: Shazam track ID
+          example: '549952578'
+        title:
+          type: string
+          example: Blinding Lights
+        subtitle:
+          type: string
+          description: Artist name
+          example: The Weeknd
+        images:
+          type: object
+          properties:
+            background:
+              type: string
+              format: uri
+            coverart:
+              type: string
+              format: uri
+            coverarthq:
+              type: string
+              format: uri
+        share:
+          type: object
+          properties:
+            subject:
+              type: string
+            text:
+              type: string
+            href:
+              type: string
+              format: uri
+            image:
+              type: string
+              format: uri
+            twitter:
+              type: string
+            html:
+              type: string
+              format: uri
+            avatar:
+              type: string
+              format: uri
+            snapchat:
+              type: string
+              format: uri
+        hub:
+          type: object
+          description: Streaming platform links (Apple Music, Spotify, etc.)
+          properties:
+            type:
+              type: string
+            image:
+              type: string
+              format: uri
+            actions:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  type:
+                    type: string
+                  id:
+                    type: string
+                  uri:
+                    type: string
+                    format: uri
+            options:
+              type: array
+              items:
+                type: object
+            providers:
+              type: array
+              items:
+                type: object
+                properties:
+                  caption:
+                    type: string
+                  images:
+                    type: object
+                  actions:
+                    type: array
+                    items:
+                      type: object
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              metapages:
+                type: array
+                items:
+                  type: object
+              tabname:
+                type: string
+              metadata:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    text:
+                      type: string
+        url:
+          type: string
+          format: uri
+          description: Shazam web URL for this track
+        isrc:
+          type: string
+          description: International Standard Recording Code
+          example: USUG12004076
+    RecognizeResponse:
+      type: object
+      properties:
+        matches:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              offset:
+                type: number
+              timeskew:
+                type: number
+              frequencyskew:
+                type: number
+        location:
+          type: object
+        timestamp:
+          type: integer
+        timezone:
+          type: string
+        track:
+          $ref: '#/components/schemas/Track'
+        tagid:
+          type: string
+    RecognizeRequest:
+      type: object
+      description: Audio fingerprint payload for track recognition
+      properties:
+        timezone:
+          type: string
+          example: Europe/Moscow
+        signature:
+          type: object
+          properties:
+            uri:
+              type: string
+              description: Base64-encoded audio signature URI
+            samplems:
+              type: integer
+              description: Duration of the audio sample in milliseconds
+        timestamp:
+          type: integer
+          description: Unix timestamp in milliseconds when the capture was taken
+        context:
+          type: object
+          description: Additional context metadata
+        geolocation:
+          type: object
+          properties:
+            altitude:
+              type: number
+            latitude:
+              type: number
+            longitude:
+              type: number
+  parameters:
+    language:
+      name: language
+      in: path
+      required: true
+      schema:
+        type: string
+        default: en-US
+        example: en-US
+      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
+  securitySchemes:
+    RapidAPIKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI key for the apidojo/shazam endpoint on rapidapi.com
+    ShazamPlatformHeader:
+      type: apiKey
+      in: header
+      name: X-Shazam-Platform
+      description: Internal Shazam platform identifier (e.g. IPHONE)

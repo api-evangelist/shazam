@@ -1,0 +1,319 @@
+openapi: 3.0.3
+info:
+  title: Shazam REST Albums Search API
+  description: 'The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).
+
+    '
+  version: 5.0.0
+  contact:
+    name: Shazam Developer (via Apple / ShazamKit)
+    url: https://developer.apple.com/shazamkit/
+  x-rapidapi-provider: apidojo
+  x-rapidapi-hub: https://rapidapi.com/apidojo/api/shazam
+servers:
+- url: https://www.shazam.com
+  description: Primary Shazam web API
+- url: https://amp.shazam.com
+  description: Shazam recognition endpoint
+- url: https://cdn.shazam.com
+  description: Shazam CDN (related tracks)
+security:
+- RapidAPIKey: []
+tags:
+- name: Search
+  description: Full-text search across Shazam's track and artist catalog
+paths:
+  /services/search/v4/{language}/{endpoint_country}/web/search:
+    get:
+      operationId: searchArtists
+      summary: Search for artists
+      description: Search Shazam's catalog for artists by name or prefix.
+      tags:
+      - Search
+      parameters:
+      - $ref: '#/components/parameters/language'
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: term
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Artist name or search prefix
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+        description: Maximum number of results
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: types
+        in: query
+        schema:
+          type: string
+          default: artists
+      responses:
+        '200':
+          description: Artist search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtistSearchResponse'
+  /services/search/v3/{language}/{endpoint_country}/web/search:
+    get:
+      operationId: searchTracks
+      summary: Search for tracks
+      description: Full-text search across Shazam's catalog for songs by title or prefix.
+      tags:
+      - Search
+      parameters:
+      - $ref: '#/components/parameters/language'
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Track title or search prefix
+      - name: numResults
+        in: query
+        schema:
+          type: integer
+          default: 10
+        description: Maximum number of results
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - name: types
+        in: query
+        schema:
+          type: string
+          default: songs
+      responses:
+        '200':
+          description: Track search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackSearchResponse'
+components:
+  schemas:
+    Track:
+      type: object
+      properties:
+        layout:
+          type: string
+        type:
+          type: string
+          example: MUSIC
+        key:
+          type: string
+          description: Shazam track ID
+          example: '549952578'
+        title:
+          type: string
+          example: Blinding Lights
+        subtitle:
+          type: string
+          description: Artist name
+          example: The Weeknd
+        images:
+          type: object
+          properties:
+            background:
+              type: string
+              format: uri
+            coverart:
+              type: string
+              format: uri
+            coverarthq:
+              type: string
+              format: uri
+        share:
+          type: object
+          properties:
+            subject:
+              type: string
+            text:
+              type: string
+            href:
+              type: string
+              format: uri
+            image:
+              type: string
+              format: uri
+            twitter:
+              type: string
+            html:
+              type: string
+              format: uri
+            avatar:
+              type: string
+              format: uri
+            snapchat:
+              type: string
+              format: uri
+        hub:
+          type: object
+          description: Streaming platform links (Apple Music, Spotify, etc.)
+          properties:
+            type:
+              type: string
+            image:
+              type: string
+              format: uri
+            actions:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  type:
+                    type: string
+                  id:
+                    type: string
+                  uri:
+                    type: string
+                    format: uri
+            options:
+              type: array
+              items:
+                type: object
+            providers:
+              type: array
+              items:
+                type: object
+                properties:
+                  caption:
+                    type: string
+                  images:
+                    type: object
+                  actions:
+                    type: array
+                    items:
+                      type: object
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              metapages:
+                type: array
+                items:
+                  type: object
+              tabname:
+                type: string
+              metadata:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    text:
+                      type: string
+        url:
+          type: string
+          format: uri
+          description: Shazam web URL for this track
+        isrc:
+          type: string
+          description: International Standard Recording Code
+          example: USUG12004076
+    ArtistSearchResponse:
+      type: object
+      properties:
+        artists:
+          type: object
+          properties:
+            hits:
+              type: array
+              items:
+                type: object
+                properties:
+                  artist:
+                    $ref: '#/components/schemas/Artist'
+    TrackSearchResponse:
+      type: object
+      properties:
+        tracks:
+          type: object
+          properties:
+            hits:
+              type: array
+              items:
+                type: object
+                properties:
+                  track:
+                    $ref: '#/components/schemas/Track'
+    Artist:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '203347991'
+        type:
+          type: string
+          example: artists
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            genreNames:
+              type: array
+              items:
+                type: string
+            artwork:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            url:
+              type: string
+              format: uri
+        relationships:
+          type: object
+  parameters:
+    language:
+      name: language
+      in: path
+      required: true
+      schema:
+        type: string
+        default: en-US
+        example: en-US
+      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
+  securitySchemes:
+    RapidAPIKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI key for the apidojo/shazam endpoint on rapidapi.com
+    ShazamPlatformHeader:
+      type: apiKey
+      in: header
+      name: X-Shazam-Platform
+      description: Internal Shazam platform identifier (e.g. IPHONE)

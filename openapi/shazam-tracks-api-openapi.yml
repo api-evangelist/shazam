@@ -1,0 +1,319 @@
+openapi: 3.0.3
+info:
+  title: Shazam REST Albums Tracks API
+  description: 'The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).
+
+    '
+  version: 5.0.0
+  contact:
+    name: Shazam Developer (via Apple / ShazamKit)
+    url: https://developer.apple.com/shazamkit/
+  x-rapidapi-provider: apidojo
+  x-rapidapi-hub: https://rapidapi.com/apidojo/api/shazam
+servers:
+- url: https://www.shazam.com
+  description: Primary Shazam web API
+- url: https://amp.shazam.com
+  description: Shazam recognition endpoint
+- url: https://cdn.shazam.com
+  description: Shazam CDN (related tracks)
+security:
+- RapidAPIKey: []
+tags:
+- name: Tracks
+  description: Track metadata, related tracks, and listening counters
+paths:
+  /discovery/v5/{language}/{endpoint_country}/web/-/track/{track_id}:
+    get:
+      operationId: getTrack
+      summary: Get track metadata by track ID
+      description: 'Retrieve full metadata for a Shazam track by its numeric ID, including title, artist, album, genre, artwork URL, ISRC, and streaming links.
+
+        '
+      tags:
+      - Tracks
+      parameters:
+      - $ref: '#/components/parameters/language'
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: track_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 549952578
+        description: Shazam numeric track ID
+      - name: shazamapiversion
+        in: query
+        schema:
+          type: string
+          default: v3
+      - name: video
+        in: query
+        schema:
+          type: string
+          default: v3
+      responses:
+        '200':
+          description: Track metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Track'
+  /shazam/v3/{language}/{endpoint_country}/web/-/tracks/track-similarities-id-{track_id}:
+    get:
+      operationId: getRelatedTracks
+      summary: Get related tracks
+      description: 'Discover songs similar to a given track based on Shazam''s similarity engine.
+
+        '
+      servers:
+      - url: https://cdn.shazam.com
+      tags:
+      - Tracks
+      parameters:
+      - $ref: '#/components/parameters/language'
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: track_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 546891609
+      - name: startFrom
+        in: query
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: Related tracks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelatedTracksResponse'
+  /services/count/v2/web/track/{track_id}:
+    get:
+      operationId: getListeningCounter
+      summary: Get listening counter for a track
+      description: Returns the total Shazam identification count for a single track.
+      tags:
+      - Tracks
+      parameters:
+      - name: track_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 559284007
+      responses:
+        '200':
+          description: Listening counter data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListeningCounterResponse'
+  /services/count/v2/web/track:
+    get:
+      operationId: getListeningCounterMany
+      summary: Get listening counters for multiple tracks
+      description: Returns the total Shazam identification counts for multiple tracks.
+      tags:
+      - Tracks
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+        style: form
+        explode: true
+        description: One or more track IDs
+      responses:
+        '200':
+          description: Listening counter data for multiple tracks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ListeningCounterResponse'
+components:
+  schemas:
+    Track:
+      type: object
+      properties:
+        layout:
+          type: string
+        type:
+          type: string
+          example: MUSIC
+        key:
+          type: string
+          description: Shazam track ID
+          example: '549952578'
+        title:
+          type: string
+          example: Blinding Lights
+        subtitle:
+          type: string
+          description: Artist name
+          example: The Weeknd
+        images:
+          type: object
+          properties:
+            background:
+              type: string
+              format: uri
+            coverart:
+              type: string
+              format: uri
+            coverarthq:
+              type: string
+              format: uri
+        share:
+          type: object
+          properties:
+            subject:
+              type: string
+            text:
+              type: string
+            href:
+              type: string
+              format: uri
+            image:
+              type: string
+              format: uri
+            twitter:
+              type: string
+            html:
+              type: string
+              format: uri
+            avatar:
+              type: string
+              format: uri
+            snapchat:
+              type: string
+              format: uri
+        hub:
+          type: object
+          description: Streaming platform links (Apple Music, Spotify, etc.)
+          properties:
+            type:
+              type: string
+            image:
+              type: string
+              format: uri
+            actions:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  type:
+                    type: string
+                  id:
+                    type: string
+                  uri:
+                    type: string
+                    format: uri
+            options:
+              type: array
+              items:
+                type: object
+            providers:
+              type: array
+              items:
+                type: object
+                properties:
+                  caption:
+                    type: string
+                  images:
+                    type: object
+                  actions:
+                    type: array
+                    items:
+                      type: object
+        sections:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              metapages:
+                type: array
+                items:
+                  type: object
+              tabname:
+                type: string
+              metadata:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    text:
+                      type: string
+        url:
+          type: string
+          format: uri
+          description: Shazam web URL for this track
+        isrc:
+          type: string
+          description: International Standard Recording Code
+          example: USUG12004076
+    ListeningCounterResponse:
+      type: object
+      properties:
+        trackId:
+          type: string
+        count:
+          type: integer
+          description: Total number of times this track has been Shazam'd
+    RelatedTracksResponse:
+      type: object
+      properties:
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+  parameters:
+    language:
+      name: language
+      in: path
+      required: true
+      schema:
+        type: string
+        default: en-US
+        example: en-US
+      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
+  securitySchemes:
+    RapidAPIKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI key for the apidojo/shazam endpoint on rapidapi.com
+    ShazamPlatformHeader:
+      type: apiKey
+      in: header
+      name: X-Shazam-Platform
+      description: Internal Shazam platform identifier (e.g. IPHONE)

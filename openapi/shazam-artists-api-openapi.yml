@@ -1,0 +1,178 @@
+openapi: 3.0.3
+info:
+  title: Shazam REST Albums Artists API
+  description: 'The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).
+
+    '
+  version: 5.0.0
+  contact:
+    name: Shazam Developer (via Apple / ShazamKit)
+    url: https://developer.apple.com/shazamkit/
+  x-rapidapi-provider: apidojo
+  x-rapidapi-hub: https://rapidapi.com/apidojo/api/shazam
+servers:
+- url: https://www.shazam.com
+  description: Primary Shazam web API
+- url: https://amp.shazam.com
+  description: Shazam recognition endpoint
+- url: https://cdn.shazam.com
+  description: Shazam CDN (related tracks)
+security:
+- RapidAPIKey: []
+tags:
+- name: Artists
+  description: Artist profiles and albums
+paths:
+  /services/amapi/v1/catalog/{endpoint_country}/artists/{artist_id}:
+    get:
+      operationId: getArtist
+      summary: Get artist profile
+      description: 'Retrieve an artist''s profile including biography, top tracks, related artists, and streaming metadata.
+
+        '
+      tags:
+      - Artists
+      parameters:
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: artist_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 203347991
+        description: Shazam numeric artist ID
+      responses:
+        '200':
+          description: Artist profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artist'
+  /services/amapi/v1/catalog/{endpoint_country}/artists/{artist_id}/albums:
+    get:
+      operationId: getArtistAlbums
+      summary: Get albums by artist
+      description: Retrieve a paginated list of albums for a given artist.
+      tags:
+      - Artists
+      parameters:
+      - $ref: '#/components/parameters/endpoint_country'
+      - name: artist_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 203347991
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of albums
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlbumsResponse'
+components:
+  schemas:
+    Artist:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '203347991'
+        type:
+          type: string
+          example: artists
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            genreNames:
+              type: array
+              items:
+                type: string
+            artwork:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            url:
+              type: string
+              format: uri
+        relationships:
+          type: object
+    Album:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: albums
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            artistName:
+              type: string
+            releaseDate:
+              type: string
+              format: date
+            trackCount:
+              type: integer
+            genreNames:
+              type: array
+              items:
+                type: string
+            artwork:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+    AlbumsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Album'
+        next:
+          type: string
+          format: uri
+  parameters:
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
+  securitySchemes:
+    RapidAPIKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+      description: RapidAPI key for the apidojo/shazam endpoint on rapidapi.com
+    ShazamPlatformHeader:
+      type: apiKey
+      in: header
+      name: X-Shazam-Platform
+      description: Internal Shazam platform identifier (e.g. IPHONE)
