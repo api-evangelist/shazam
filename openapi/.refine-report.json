@@ -1,0 +1,24 @@
+{
+  "provider": "shazam",
+  "sources": [
+    "shazam-albums-api-openapi.yml",
+    "shazam-artists-api-openapi.yml",
+    "shazam-charts-api-openapi.yml",
+    "shazam-recognition-api-openapi.yml",
+    "shazam-search-api-openapi.yml",
+    "shazam-tracks-api-openapi.yml"
+  ],
+  "outputs": [
+    "shazam-albums-api-openapi.yml",
+    "shazam-artists-api-openapi.yml",
+    "shazam-charts-api-openapi.yml",
+    "shazam-recognition-api-openapi.yml",
+    "shazam-search-api-openapi.yml",
+    "shazam-tracks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
