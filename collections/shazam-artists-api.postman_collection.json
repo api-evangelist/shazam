@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "da5629dc-168f-4703-b4b5-ca414ea1fbbd",
+      "name": "Artists",
+      "description": {
+        "content": "Artist profiles and albums",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ef255a88-fca9-451c-9716-9903e128deb0",
+          "name": "Get artist profile",
+          "request": {
+            "name": "Get artist profile",
+            "description": {
+              "content": "Retrieve an artist's profile including biography, top tracks, related artists, and streaming metadata.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "amapi",
+                "v1",
+                "catalog",
+                ":endpoint_country",
+                "artists",
+                ":artist_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "GB",
+                  "key": "endpoint_country",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "artist_id",
+                  "description": "(Required) Shazam numeric artist ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "027cba47-88e9-4f5f-8b98-15c7ffb6a28f",
+              "name": "Artist profile",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "amapi",
+                    "v1",
+                    "catalog",
+                    ":endpoint_country",
+                    "artists",
+                    ":artist_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "GB",
+                      "key": "endpoint_country",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "artist_id",
+                      "description": "(Required) Shazam numeric artist ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"203347991\",\n  \"type\": \"artists\",\n  \"attributes\": {\n    \"name\": \"string\",\n    \"genreNames\": [\n      \"string\",\n      \"string\"\n    ],\n    \"artwork\": {\n      \"url\": \"http://BmARDAtiXKgMtyuTXtVSEgPZtSpVVIVAZ.qtuM7QwD.QwGqEd9-Ep69qxCTMsiQc-..OGGFbZbTikCoubU\",\n      \"width\": 775,\n      \"height\": 3328\n    },\n    \"url\": \"https://PLkrhDfahGqAxOGVIrZ.spzgXUV.OFCT.M\"\n  },\n  \"relationships\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a60445fa-9a21-4125-830c-bc58cd02f54c",
+          "name": "Get albums by artist",
+          "request": {
+            "name": "Get albums by artist",
+            "description": {
+              "content": "Retrieve a paginated list of albums for a given artist.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "amapi",
+                "v1",
+                "catalog",
+                ":endpoint_country",
+                "artists",
+                ":artist_id",
+                "albums"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "GB",
+                  "key": "endpoint_country",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "artist_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a5b7bb6-789a-49ac-89d2-d1f8bf633220",
+              "name": "List of albums",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "amapi",
+                    "v1",
+                    "catalog",
+                    ":endpoint_country",
+                    "artists",
+                    ":artist_id",
+                    "albums"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "GB",
+                      "key": "endpoint_country",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "artist_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"albums\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"artistName\": \"string\",\n        \"releaseDate\": \"1994-02-06\",\n        \"trackCount\": 9346,\n        \"genreNames\": [\n          \"string\",\n          \"string\"\n        ],\n        \"artwork\": {\n          \"url\": \"http://KojFzghbZcQqOYaLvBeg.jdokbxEwW6k,KfhA948Z9lgcwYkYqKufGJVaRs1d\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"albums\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"artistName\": \"string\",\n        \"releaseDate\": \"1985-10-09\",\n        \"trackCount\": 9654,\n        \"genreNames\": [\n          \"string\",\n          \"string\"\n        ],\n        \"artwork\": {\n          \"url\": \"http://quPPVNDjKqbkdttF.chchAQaVRxXBUCg+a4\"\n        }\n      }\n    }\n  ],\n  \"next\": \"https://oDlVzJ.uasiB1FQ81EWaIqOJWwVckRZRfBXjvL-vlkqEy,OAN3MGbzF5uCcSDgHK3J.gdrfcIXtWGgkO\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.shazam.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5071317c-af23-445c-8634-20e0a353d39e",
+    "name": "Shazam REST Albums Artists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).\n\n\nContact Support:\n Name: Shazam Developer (via Apple / ShazamKit)",
+      "type": "text/plain"
+    }
+  }
+}

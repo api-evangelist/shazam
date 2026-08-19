@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shazam REST Albums Recognition API",
+    "version": "5.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recognition",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Recognize a track from an audio fingerprint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.shazam.com/discovery/v5/:language/:endpoint_country/:device/-/tag/:uuid_1/:uuid_2",
+            "params": [
+              {
+                "name": "language",
+                "value": "",
+                "type": "path",
+                "description": "BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+              },
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "device",
+                "value": "",
+                "type": "path",
+                "description": "Client device type"
+              },
+              {
+                "name": "uuid_1",
+                "value": "",
+                "type": "path",
+                "description": "Random UUID (session identifier)"
+              },
+              {
+                "name": "uuid_2",
+                "value": "",
+                "type": "path",
+                "description": "Random UUID (request identifier)"
+              },
+              {
+                "name": "sync",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "webv3",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sampling",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shazamapiversion",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "video",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit an audio fingerprint (encoded URI signature) to the Shazam recognition engine. Returns track metadata including title, artist, album, genre, artwork, ISRC, and streaming platform links when a match is found.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shazam REST Albums Search API",
+    "version": "5.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for artists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/search/v4/:language/:endpoint_country/web/search",
+            "params": [
+              {
+                "name": "language",
+                "value": "",
+                "type": "path",
+                "description": "BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+              },
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "term",
+                "value": "",
+                "type": "query",
+                "description": "Artist name or search prefix"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search Shazam's catalog for artists by name or prefix."
+        },
+        {
+          "info": {
+            "name": "Search for tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/search/v3/:language/:endpoint_country/web/search",
+            "params": [
+              {
+                "name": "language",
+                "value": "",
+                "type": "path",
+                "description": "BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+              },
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Track title or search prefix"
+              },
+              {
+                "name": "numResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Full-text search across Shazam's catalog for songs by title or prefix."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

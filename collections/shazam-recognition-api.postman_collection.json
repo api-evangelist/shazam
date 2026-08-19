@@ -1,0 +1,289 @@
+{
+  "item": [
+    {
+      "id": "fc807777-20fa-451e-8782-fc10c8b59ee0",
+      "name": "Recognition",
+      "description": {
+        "content": "Audio fingerprint recognition against the Shazam catalog",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f380a494-15d3-4b3b-a4ed-e4c6de544cc1",
+          "name": "Recognize a track from an audio fingerprint",
+          "request": {
+            "name": "Recognize a track from an audio fingerprint",
+            "description": {
+              "content": "Submit an audio fingerprint (encoded URI signature) to the Shazam recognition engine. Returns track metadata including title, artist, album, genre, artwork, ISRC, and streaming platform links when a match is found.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "discovery",
+                "v5",
+                ":language",
+                ":endpoint_country",
+                ":device",
+                "-",
+                "tag",
+                ":uuid_1",
+                ":uuid_2"
+              ],
+              "host": [
+                "amp",
+                "shazam",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sync",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "webv3",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "sampling",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "shazamapiversion",
+                  "value": "v3"
+                },
+                {
+                  "disabled": false,
+                  "key": "video",
+                  "value": "v3"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en-US",
+                  "key": "language",
+                  "description": "(Required) BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "GB",
+                  "key": "endpoint_country",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "device",
+                  "description": "(Required) Client device type"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid_1",
+                  "description": "(Required) Random UUID (session identifier)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "uuid_2",
+                  "description": "(Required) Random UUID (request identifier)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timezone\": \"<string>\",\n  \"signature\": {\n    \"uri\": \"<string>\",\n    \"samplems\": \"<integer>\"\n  },\n  \"timestamp\": \"<integer>\",\n  \"context\": \"<object>\",\n  \"geolocation\": {\n    \"altitude\": \"<number>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28867273-6a31-40bb-bd87-0b41c4fdf735",
+              "name": "Recognition result",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "discovery",
+                    "v5",
+                    ":language",
+                    ":endpoint_country",
+                    ":device",
+                    "-",
+                    "tag",
+                    ":uuid_1",
+                    ":uuid_2"
+                  ],
+                  "host": [
+                    "amp",
+                    "shazam",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "sync",
+                      "value": "true"
+                    },
+                    {
+                      "key": "webv3",
+                      "value": "true"
+                    },
+                    {
+                      "key": "sampling",
+                      "value": "true"
+                    },
+                    {
+                      "key": "shazamapiversion",
+                      "value": "v3"
+                    },
+                    {
+                      "key": "video",
+                      "value": "v3"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en-US",
+                      "key": "language",
+                      "description": "(Required) BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "GB",
+                      "key": "endpoint_country",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "device",
+                      "description": "(Required) Client device type"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid_1",
+                      "description": "(Required) Random UUID (session identifier)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "uuid_2",
+                      "description": "(Required) Random UUID (request identifier)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timezone\": \"Europe/Moscow\",\n  \"signature\": {\n    \"uri\": \"<string>\",\n    \"samplems\": \"<integer>\"\n  },\n  \"timestamp\": \"<integer>\",\n  \"context\": \"<object>\",\n  \"geolocation\": {\n    \"altitude\": \"<number>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"matches\": [\n    {\n      \"id\": \"string\",\n      \"offset\": 4191.89904193537,\n      \"timeskew\": 5845.224778263313,\n      \"frequencyskew\": 2828.183899401656\n    },\n    {\n      \"id\": \"string\",\n      \"offset\": 8852.915133679071,\n      \"timeskew\": 6665.765189772853,\n      \"frequencyskew\": 5846.0838126864355\n    }\n  ],\n  \"location\": {},\n  \"timestamp\": 7497,\n  \"timezone\": \"string\",\n  \"track\": {\n    \"layout\": \"string\",\n    \"type\": \"MUSIC\",\n    \"key\": \"549952578\",\n    \"title\": \"Blinding Lights\",\n    \"subtitle\": \"The Weeknd\",\n    \"images\": {\n      \"background\": \"https://OrlBLDcOitPCEDHpNqJhVYvdVrab.mjJnkYuefv6qvO2VPG1G5IxBZ+UkMBs1Njw\",\n      \"coverart\": \"http://WGHnIMvNxlyCjSiBlldVWJVJCcZbA.exxyBCVPkGwjisIRxHWmcr5MSJ8lv5Sj0Qpm0EHvX4s,QfgMtRwCDVE-lBq3P.iqcsbNCDstNaJK3jSvI\",\n      \"coverarthq\": \"https://YoXsQelofxeOhvn.fgACpUEdOk9D9Ag,tF9qVznXDOKYDVLZmF7OAKOuifg6U3GMFMnVa5ViMuOriy\"\n    },\n    \"share\": {\n      \"subject\": \"string\",\n      \"text\": \"string\",\n      \"href\": \"https://UZcQSPfivIkxGcvRu.kjchSadPunj4YrBzhvpOOSByWxuJqRLCbn96wnm3jcPpjEZO\",\n      \"image\": \"http://EKzjvmwGqXFMSOLecnsQJfZXxqz.uincowPr6\",\n      \"twitter\": \"string\",\n      \"html\": \"http://XSSEUwtgTfLfJ.qsXJq-hX3ybVFaloH1n-,ojTclbnuIM9NMznDYYh6QmjG9F2IanJMN4l\",\n      \"avatar\": \"https://DdqW.ozIx2wCKwnTPFc,2-GeS8NUEUUda9FbxPLabrySp,d3.traReu\",\n      \"snapchat\": \"http://EqbyVWIXahZAYDF.zyyYTmoujj7jZWuhpu,udjYg-AcjGwOxDsVPip3jhSmKDL0Rg0P0B-OJFCpP9C2niLkyHIJEbTZVDNC\"\n    },\n    \"hub\": {\n      \"type\": \"string\",\n      \"image\": \"https://DWEqDjBf.nwjel8J.-s1E7Fj4Ivi5oP.mPdQDOv3m,wNZj\",\n      \"actions\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"uri\": \"https://OUDQsRWGWL.hldho8QSktip.RqvlXDxw9V-.Pfu54STfKMSZ.+vf\"\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"id\": \"string\",\n          \"uri\": \"https://Hfda.cjmxa6dKqtLFdtBTmHQOgHKqJpsFIMu6AD-Z+IlYHVzWiv\"\n        }\n      ],\n      \"providers\": [\n        {\n          \"caption\": \"string\",\n          \"images\": {}\n        },\n        {\n          \"caption\": \"string\",\n          \"images\": {}\n        }\n      ]\n    },\n    \"sections\": [\n      {\n        \"type\": \"string\",\n        \"tabname\": \"string\",\n        \"metadata\": [\n          {\n            \"title\": \"string\",\n            \"text\": \"string\"\n          },\n          {\n            \"title\": \"string\",\n            \"text\": \"string\"\n          }\n        ]\n      },\n      {\n        \"type\": \"string\",\n        \"tabname\": \"string\",\n        \"metadata\": [\n          {\n            \"title\": \"string\",\n            \"text\": \"string\"\n          },\n          {\n            \"title\": \"string\",\n            \"text\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"url\": \"https://ZxwtxWC.ajedRYg5SE3d-bVhmsNRqsfvJBwqyqejB2B5C\",\n    \"isrc\": \"USUG12004076\"\n  },\n  \"tagid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.shazam.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "df37c0f7-19d3-411b-9675-e9526592250f",
+    "name": "Shazam REST Albums Recognition API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).\n\n\nContact Support:\n Name: Shazam Developer (via Apple / ShazamKit)",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "item": [
+    {
+      "id": "34dd111e-c5e2-44b9-9bcd-58d87da34eee",
+      "name": "Charts",
+      "description": {
+        "content": "Music charts by country, city, and genre",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "934b63e7-0367-4c96-9dfd-e5db8d910922",
+          "name": "Get tracks from a chart playlist",
+          "request": {
+            "name": "Get tracks from a chart playlist",
+            "description": {
+              "content": "Retrieve the tracks in a Shazam chart playlist. Used for top world tracks, top country tracks, top city tracks, and genre charts. The playlist_id is obtained from the chart locations service.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "amapi",
+                "v1",
+                "catalog",
+                ":endpoint_country",
+                "playlists",
+                ":playlist_id",
+                "tracks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "200",
+                  "description": "Maximum number of tracks to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "l",
+                  "value": "en-US",
+                  "description": "Language code"
+                },
+                {
+                  "disabled": false,
+                  "key": "relate[songs]",
+                  "value": "artists,music-videos"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "GB",
+                  "key": "endpoint_country",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "playlist_id",
+                  "description": "(Required) Shazam playlist identifier for the chart"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5b98d2a-d04e-4207-b150-588b6a7297c5",
+              "name": "List of chart tracks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "amapi",
+                    "v1",
+                    "catalog",
+                    ":endpoint_country",
+                    "playlists",
+                    ":playlist_id",
+                    "tracks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "200"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "l",
+                      "value": "en-US"
+                    },
+                    {
+                      "key": "relate[songs]",
+                      "value": "artists,music-videos"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "GB",
+                      "key": "endpoint_country",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "playlist_id",
+                      "description": "(Required) Shazam playlist identifier for the chart"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"layout\": \"string\",\n      \"type\": \"MUSIC\",\n      \"key\": \"549952578\",\n      \"title\": \"Blinding Lights\",\n      \"subtitle\": \"The Weeknd\",\n      \"images\": {\n        \"background\": \"http://nR.sxmd,Xbr5DMhq,3gRNDywvq\",\n        \"coverart\": \"https://AhHlOQCp.pmbpsuUANlyTSdp6g\",\n        \"coverarthq\": \"http://EwFIuEMtes.raHmMJS+YHjFbc0eYUFhpF24P9XK,e+7Lnm\"\n      },\n      \"share\": {\n        \"subject\": \"string\",\n        \"text\": \"string\",\n        \"href\": \"http://M.tflgJxk3CwtAIXpPyC.WEJsOVN.zXIvt5EjYrIz\",\n        \"image\": \"http://iWEJCpnAUMSrHrHVcMMPY.jqalaw9ZEZhwYptjZSF2T0O3W.Z--UoN+Xoka9V8UAJvSsGnFs\",\n        \"twitter\": \"string\",\n        \"html\": \"http://dfAOxSPjdiAhfp.dhgivRhvcuiNgjWKbmyPRte3ZDr5akVSY\",\n        \"avatar\": \"https://oYgApwAVPxOgi.orldb+OOfHAZ4OSPRxFDDboj9TEftFoFWLl.AD4s9eNK5Jm+L\",\n        \"snapchat\": \"http://aLPTGwnXqWNwTItQsFeoSPdaQzWDu.sviqT,qNKyucNzO2WxCg5eVIUzmd+vpX0FSbRLGwbHFlfq+DHbBFEzZA-\"\n      },\n      \"hub\": {\n        \"type\": \"string\",\n        \"image\": \"https://bClHsQfHFSRRrJOCWWVjQHvPkGzWSgQ.dwylJQJFL2l6qJSRQ8GJ4OZWArtCyO.ciVvXN4Q6rSLSr,2S+w2te\",\n        \"actions\": [\n          {\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"id\": \"string\",\n            \"uri\": \"https://MxKc.fzuerX,D-MdPUqAUqJ0V1IS-0t5ZHM5hhuPqBCP-PMsXC\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"id\": \"string\",\n            \"uri\": \"https://raoyWFHfCsFpSoDYQQGQoemTkiN.fnr5dS5v1GR\"\n          }\n        ],\n        \"providers\": [\n          {\n            \"caption\": \"string\",\n            \"images\": {}\n          },\n          {\n            \"caption\": \"string\",\n            \"images\": {}\n          }\n        ]\n      },\n      \"sections\": [\n        {\n          \"type\": \"string\",\n          \"tabname\": \"string\",\n          \"metadata\": [\n            {\n              \"title\": \"string\",\n              \"text\": \"string\"\n            },\n            {\n              \"title\": \"string\",\n              \"text\": \"string\"\n            }\n          ]\n        },\n        {\n          \"type\": \"string\",\n          \"tabname\": \"string\",\n          \"metadata\": [\n            {\n              \"title\": \"string\",\n              \"text\": \"string\"\n            },\n            {\n              \"title\": \"string\",\n              \"text\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"url\": \"https://JLKOyO.trBS0l,FA6Is,tXqRLiroK-nstQVf.MVnWsJQ74LG2\",\n      \"isrc\": \"USUG12004076\"\n    },\n    {\n      \"layout\": \"string\",\n      \"type\": \"MUSIC\",\n      \"key\": \"549952578\",\n      \"title\": \"Blinding Lights\",\n      \"subtitle\": \"The Weeknd\",\n      \"images\": {\n        \"background\": \"https://NwshGlRkAhpDPfFUnVmZpXGCPFRADWGlR.esqCM7IdHU1V3iYEVvMgLBaivxtv73ICu\",\n        \"coverart\": \"https://xidZxijdzsfkrZ.pigDxL+fC1..Ynnejvnsd0d6pQSyLW9eg4jc6lOgII\",\n        \"coverarthq\": \"https://sXwSW.eyozGSsKb2HEgmqV5JpqtdpNtaWSdwiyFuLmwg,\"\n      },\n      \"share\": {\n        \"subject\": \"string\",\n        \"text\": \"string\",\n        \"href\": \"http://KwHdWXZJDoLZJQGqsLGlrNwhV.ntoQZqvTYflByqDpfnEb0Z.Tm\",\n        \"image\": \"http://aZxIqjndoniLTqpOa.ctQTNKuXxDVDf9EVjqjr3,Zp-nGBK8JCm-Uxaj4FSrMUPy7+jPNHG\",\n        \"twitter\": \"string\",\n        \"html\": \"http://gKBnvmlpmgEy.wro61QDNC\",\n        \"avatar\": \"https://UyquQmMNh.mopiyx.T4,mnnI-qHx,V2HmBhZ.vkKl,LXMSE,u8Ep-pUKwmlbli-SvECKULMX2hpy9-k+WeLK\",\n        \"snapchat\": \"http://upHxsyLZqWWlLfkCtZkadC.pdnx\"\n      },\n      \"hub\": {\n        \"type\": \"string\",\n        \"image\": \"https://SXSiDAFfnozqQumhCNHPsaIzuKWTeb.gkkzRmh9xPTyW7NYzVBaYcusGzeGipX61.7\",\n        \"actions\": [\n          {\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"id\": \"string\",\n            \"uri\": \"http://YdblGPDMmgYaCajmkLTAM.bcijEtPDJV8kJyjEwgZGHxnJWBCxB\"\n          },\n          {\n            \"name\": \"string\",\n            \"type\": \"string\",\n            \"id\": \"string\",\n            \"uri\": \"https://mbHmdEaTBaRanoJeSsWuJlvtJQKkW.paoao+IdrDgmlOwSihmYsrHEMA4Rwpf\"\n          }\n        ],\n        \"providers\": [\n          {\n            \"caption\": \"string\",\n            \"images\": {}\n          },\n          {\n            \"caption\": \"string\",\n            \"images\": {}\n          }\n        ]\n      },\n      \"sections\": [\n        {\n          \"type\": \"string\",\n          \"tabname\": \"string\",\n          \"metadata\": [\n            {\n              \"title\": \"string\",\n              \"text\": \"string\"\n            },\n            {\n              \"title\": \"string\",\n              \"text\": \"string\"\n            }\n          ]\n        },\n        {\n          \"type\": \"string\",\n          \"tabname\": \"string\",\n          \"metadata\": [\n            {\n              \"title\": \"string\",\n              \"text\": \"string\"\n            },\n            {\n              \"title\": \"string\",\n              \"text\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"url\": \"https://PjfxP.krjyEg4XoSWnIKZYngfeqO0Lpapi4HGy+Tajq5RaVidf\",\n      \"isrc\": \"USUG12004076\"\n    }\n  ],\n  \"next\": \"http://JIHsD.hwVl-At5ePWVDi\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6e3bb83-0865-47f2-ae9c-9c25e6258eb8",
+          "name": "Get chart location and genre playlist IDs",
+          "request": {
+            "name": "Get chart location and genre playlist IDs",
+            "description": {
+              "content": "Returns the full catalog of chart playlist IDs organized by country, city, and genre. Use the returned IDs with the playlist tracks endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "charts",
+                "locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f927cc1-c6e9-4dd6-ba7f-f2d580119511",
+              "name": "Chart locations and playlist IDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "charts",
+                    "locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"countries\": [\n    {\n      \"id\": \"string\",\n      \"listid\": \"string\",\n      \"name\": \"string\",\n      \"cities\": [\n        {\n          \"id\": \"string\",\n          \"listid\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"listid\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"listid\": \"string\",\n      \"name\": \"string\",\n      \"cities\": [\n        {\n          \"id\": \"string\",\n          \"listid\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"listid\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"genres\": [\n    {\n      \"id\": \"string\",\n      \"listid\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"listid\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.shazam.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8efeb0b9-6411-4d06-9285-913ef4cc8cfb",
+    "name": "Shazam REST Albums Charts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).\n\n\nContact Support:\n Name: Shazam Developer (via Apple / ShazamKit)",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shazam REST Albums Tracks API",
+    "version": "5.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tracks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get track metadata by track ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/discovery/v5/:language/:endpoint_country/web/-/track/:track_id",
+            "params": [
+              {
+                "name": "language",
+                "value": "",
+                "type": "path",
+                "description": "BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+              },
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "track_id",
+                "value": "",
+                "type": "path",
+                "description": "Shazam numeric track ID"
+              },
+              {
+                "name": "shazamapiversion",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "video",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve full metadata for a Shazam track by its numeric ID, including title, artist, album, genre, artwork URL, ISRC, and streaming links.\n"
+        },
+        {
+          "info": {
+            "name": "Get related tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/shazam/v3/:language/:endpoint_country/web/-/tracks/track-similarities-id-:track_id",
+            "params": [
+              {
+                "name": "language",
+                "value": "",
+                "type": "path",
+                "description": "BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+              },
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "track_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startFrom",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Discover songs similar to a given track based on Shazam's similarity engine.\n"
+        },
+        {
+          "info": {
+            "name": "Get listening counter for a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/count/v2/web/track/:track_id",
+            "params": [
+              {
+                "name": "track_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the total Shazam identification count for a single track."
+        },
+        {
+          "info": {
+            "name": "Get listening counters for multiple tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/count/v2/web/track",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "One or more track IDs"
+              }
+            ]
+          },
+          "docs": "Returns the total Shazam identification counts for multiple tracks."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

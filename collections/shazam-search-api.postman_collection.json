@@ -1,0 +1,369 @@
+{
+  "item": [
+    {
+      "id": "82613bf7-b987-4519-8fe9-f63c93e312b0",
+      "name": "Search",
+      "description": {
+        "content": "Full-text search across Shazam's track and artist catalog",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "26adcddd-76e7-43b0-bedc-9c20e38c552f",
+          "name": "Search for artists",
+          "request": {
+            "name": "Search for artists",
+            "description": {
+              "content": "Search Shazam's catalog for artists by name or prefix.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "v4",
+                ":language",
+                ":endpoint_country",
+                "web",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "term",
+                  "value": "<string>",
+                  "description": "(Required) Artist name or search prefix"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "artists"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en-US",
+                  "key": "language",
+                  "description": "(Required) BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "GB",
+                  "key": "endpoint_country",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1335db25-962c-43a4-9293-ecf3cfc03365",
+              "name": "Artist search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "v4",
+                    ":language",
+                    ":endpoint_country",
+                    "web",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "term",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "types",
+                      "value": "artists"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en-US",
+                      "key": "language",
+                      "description": "(Required) BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "GB",
+                      "key": "endpoint_country",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"artists\": {\n    \"hits\": [\n      {\n        \"artist\": {\n          \"id\": \"203347991\",\n          \"type\": \"artists\",\n          \"attributes\": {\n            \"name\": \"string\",\n            \"genreNames\": [\n              \"string\",\n              \"string\"\n            ],\n            \"artwork\": {\n              \"url\": \"https://YvjcjFNRIQxyJBVVklnogTCERcXzmMF.awvFikbbpEAH3cwuyeYHQmPygUrnU3PsM-mZ\",\n              \"width\": 830,\n              \"height\": 4208\n            },\n            \"url\": \"https://TlLdSEhhDhsvFbNEG.srHr.DTuSjB8bJ6U+2cdLImI-o6uKK8e.+sDrpizKBxO,N5qkyBkE4zOQFvsViWr2JGrEfm\"\n          },\n          \"relationships\": {}\n        }\n      },\n      {\n        \"artist\": {\n          \"id\": \"203347991\",\n          \"type\": \"artists\",\n          \"attributes\": {\n            \"name\": \"string\",\n            \"genreNames\": [\n              \"string\",\n              \"string\"\n            ],\n            \"artwork\": {\n              \"url\": \"https://SMVNQXiDlkQjLSgTSQahBzSiR.nfeB5HSKQ7RazxghT9rBxwIjUNcO5keU8-XXHHfU-iF\",\n              \"width\": 4584,\n              \"height\": 843\n            },\n            \"url\": \"http://VnhkfedUII.nopwB7m8bbYz+nJ9GBFK4LMsrzjP9xS90SOtoaa9zYgi\"\n          },\n          \"relationships\": {}\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f0b0289-ac43-4f9a-82dd-c52a686d2176",
+          "name": "Search for tracks",
+          "request": {
+            "name": "Search for tracks",
+            "description": {
+              "content": "Full-text search across Shazam's catalog for songs by title or prefix.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "v3",
+                ":language",
+                ":endpoint_country",
+                "web",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Track title or search prefix"
+                },
+                {
+                  "disabled": false,
+                  "key": "numResults",
+                  "value": "10",
+                  "description": "Maximum number of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "types",
+                  "value": "songs"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "en-US",
+                  "key": "language",
+                  "description": "(Required) BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "GB",
+                  "key": "endpoint_country",
+                  "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d899766-6db2-4f3e-9f0a-ba129fb6796b",
+              "name": "Track search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "v3",
+                    ":language",
+                    ":endpoint_country",
+                    "web",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "numResults",
+                      "value": "10"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "types",
+                      "value": "songs"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "en-US",
+                      "key": "language",
+                      "description": "(Required) BCP-47 language tag (e.g. en-US, de-DE, ja-JP)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "GB",
+                      "key": "endpoint_country",
+                      "description": "(Required) ISO 3166-1 alpha-2 country code for localized results"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tracks\": {\n    \"hits\": [\n      {\n        \"track\": {\n          \"layout\": \"string\",\n          \"type\": \"MUSIC\",\n          \"key\": \"549952578\",\n          \"title\": \"Blinding Lights\",\n          \"subtitle\": \"The Weeknd\",\n          \"images\": {\n            \"background\": \"https://EgJpMdpgbJzEfaXAkhFbRMNJ.bftoGps+7QQlgyCUKVjINX7qbvEOZ.9uuScw\",\n            \"coverart\": \"https://IWNlmmTavXWSzDqbgfHTKwffiYGazeMHC.ielwtxEn1eXvvFOnfMxwYGgHRse72ZAKd0Z0k9YhsB\",\n            \"coverarthq\": \"https://BwHsOAyOzHZkWlZXPIZDybdl.zralsT61Ia2j9hw8cGkBeLAnUTBa-6BkUWiZvhLL66xeR9WWuXaXI\"\n          },\n          \"share\": {\n            \"subject\": \"string\",\n            \"text\": \"string\",\n            \"href\": \"http://MUoMnJkfqCpYULOGYjaXmeAKL.vxo7i9KYQ4\",\n            \"image\": \"http://UzpipsWiR.fqwwtcwAoBF2+7kY2HgqJhwdZURtY9vV0l76-Tu+W\",\n            \"twitter\": \"string\",\n            \"html\": \"https://cyvJuYWn.ggsznI0EwZSIZicOqVYj.qOC,gc1Yqr8p7PXkt.Al4EVkzUevmlQPTILLjaFFhwEts\",\n            \"avatar\": \"https://vVhpowjLXBVBfLcLoAplq.nlrWDU5hRwRQAz1KIgzq1B\",\n            \"snapchat\": \"http://gnHpHhINsamljQMhfboJtYWaYJfc.uqtieYTEhCtWrEStz-mqz.x,ZxNgp5kpz0L\"\n          },\n          \"hub\": {\n            \"type\": \"string\",\n            \"image\": \"https://ushIQAFrkbRtHd.wepeXjKvwCm7NIAtk,JIL7QV,fJZBXCUxakwz,q32kEt0olO5IJTdza-\",\n            \"actions\": [\n              {\n                \"name\": \"string\",\n                \"type\": \"string\",\n                \"id\": \"string\",\n                \"uri\": \"https://IfHTJMxQWkdt.mgzTSNIWx9OfuFDchkFmtP-qGf458ntTBdkC2PSubX80bZoXzHqZ\"\n              },\n              {\n                \"name\": \"string\",\n                \"type\": \"string\",\n                \"id\": \"string\",\n                \"uri\": \"http://EunWFr.jlM4dnK7iFYq\"\n              }\n            ],\n            \"providers\": [\n              {\n                \"caption\": \"string\",\n                \"images\": {},\n                \"actions\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              {\n                \"caption\": \"string\",\n                \"images\": {},\n                \"actions\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            ]\n          },\n          \"sections\": [\n            {\n              \"type\": \"string\",\n              \"tabname\": \"string\",\n              \"metadata\": [\n                {\n                  \"title\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"text\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                {\n                  \"title\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"text\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              ]\n            },\n            {\n              \"type\": \"string\",\n              \"tabname\": \"string\",\n              \"metadata\": [\n                {\n                  \"title\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"text\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                {\n                  \"title\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"text\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              ]\n            }\n          ],\n          \"url\": \"https://BigDqQvGUuXFJwqCZQInlgaORsiZgg.fvmrXFCReyLAfqvj6\",\n          \"isrc\": \"USUG12004076\"\n        }\n      },\n      {\n        \"track\": {\n          \"layout\": \"string\",\n          \"type\": \"MUSIC\",\n          \"key\": \"549952578\",\n          \"title\": \"Blinding Lights\",\n          \"subtitle\": \"The Weeknd\",\n          \"images\": {\n            \"background\": \"http://eZNKqXfyvyNnSgIejmFvrEiwFNpkUw.aizikfSWGBtme+wwq\",\n            \"coverart\": \"http://xnBHCTawwltvbSXPMyZEEPtQwMM.kqqORAwOMlCX2zDsP1jaiCpPtblakKCydN3wNv35loydY60zi3ifiRM3PTIXaoKcc\",\n            \"coverarthq\": \"https://ImkyARgmxWToBmkUJiDia.qainG.+vkhBfAlYlHaXajVs0twgOBIyAjaRH+DKbo-h7uIvDObv7nC\"\n          },\n          \"share\": {\n            \"subject\": \"string\",\n            \"text\": \"string\",\n            \"href\": \"https://KtaNSdxjKGXgmlkYJ.pjhpK,FyAj-rNuk35JSJWhEsL9EmVcW8cg3M\",\n            \"image\": \"http://oZncMBboxrPkMAZBtkkLELtdaKX.xfJlW5M7U3AE,QfQzS9mcqg-LwQ,\",\n            \"twitter\": \"string\",\n            \"html\": \"http://lixul.hhHMZ,Xmmnpz2r\",\n            \"avatar\": \"https://x.xyrhmYaXA91QmDVJBZDTcTA9IpARJkQFkrp0qCQCG9k\",\n            \"snapchat\": \"http://OTvRWrHPoxAHMsJUvKaa.rdOiCQrHyRhmaMPAmJdhl85IhZcml9vGsr8iIdaYmiveycwX4GkUOb\"\n          },\n          \"hub\": {\n            \"type\": \"string\",\n            \"image\": \"https://JnNdSlBlGuXkQijd.hyabyEjCuIrByRblB-ZxrsxWOY8fA9aWXKPH9NoZW04jtNXI8fI-lDoYXes8o86Z+\",\n            \"actions\": [\n              {\n                \"name\": \"string\",\n                \"type\": \"string\",\n                \"id\": \"string\",\n                \"uri\": \"http://JHASnxy.mmgUiL.stBTpa1EaRfwdvk7n6X7,oP9HwQMnJfmTnqGZeK.ErHQ2a2ErvnwNADlFRzf243PlUYvtq\"\n              },\n              {\n                \"name\": \"string\",\n                \"type\": \"string\",\n                \"id\": \"string\",\n                \"uri\": \"http://HkhbGNXGEOmeBVBWjtNUIEAr.qnpcmeADpoySeV-8cNut8fBlOqG4zYa6oWb34lvkkeI\"\n              }\n            ],\n            \"providers\": [\n              {\n                \"caption\": \"string\",\n                \"images\": {},\n                \"actions\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              {\n                \"caption\": \"string\",\n                \"images\": {},\n                \"actions\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            ]\n          },\n          \"sections\": [\n            {\n              \"type\": \"string\",\n              \"tabname\": \"string\",\n              \"metadata\": [\n                {\n                  \"title\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"text\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                {\n                  \"title\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"text\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              ]\n            },\n            {\n              \"type\": \"string\",\n              \"tabname\": \"string\",\n              \"metadata\": [\n                {\n                  \"title\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"text\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                },\n                {\n                  \"title\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  \"text\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                }\n              ]\n            }\n          ],\n          \"url\": \"https://QkJyKr.zezoYqMMJpdbJCw6HzkoO-8jmZOwW7cNU8,ZB,iLBPARmw5rwSrfQs494brE\",\n          \"isrc\": \"USUG12004076\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.shazam.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cce0f1d3-2922-45ac-8cf6-a246ad9a7480",
+    "name": "Shazam REST Albums Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).\n\n\nContact Support:\n Name: Shazam Developer (via Apple / ShazamKit)",
+      "type": "text/plain"
+    }
+  }
+}

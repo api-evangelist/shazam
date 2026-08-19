@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shazam REST Albums Artists API",
+    "version": "5.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get artist profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/amapi/v1/catalog/:endpoint_country/artists/:artist_id",
+            "params": [
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "artist_id",
+                "value": "",
+                "type": "path",
+                "description": "Shazam numeric artist ID"
+              }
+            ]
+          },
+          "docs": "Retrieve an artist's profile including biography, top tracks, related artists, and streaming metadata.\n"
+        },
+        {
+          "info": {
+            "name": "Get albums by artist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/amapi/v1/catalog/:endpoint_country/artists/:artist_id/albums",
+            "params": [
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "artist_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of albums for a given artist."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

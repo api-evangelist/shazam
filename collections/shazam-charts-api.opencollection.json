@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shazam REST Albums Charts API",
+    "version": "5.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Charts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get tracks from a chart playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/amapi/v1/catalog/:endpoint_country/playlists/:playlist_id/tracks",
+            "params": [
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "playlist_id",
+                "value": "",
+                "type": "path",
+                "description": "Shazam playlist identifier for the chart"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of tracks to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "l",
+                "value": "",
+                "type": "query",
+                "description": "Language code"
+              },
+              {
+                "name": "relate[songs]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the tracks in a Shazam chart playlist. Used for top world tracks, top country tracks, top city tracks, and genre charts. The playlist_id is obtained from the chart locations service.\n"
+        },
+        {
+          "info": {
+            "name": "Get chart location and genre playlist IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/charts/locations"
+          },
+          "docs": "Returns the full catalog of chart playlist IDs organized by country, city, and genre. Use the returned IDs with the playlist tracks endpoint.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

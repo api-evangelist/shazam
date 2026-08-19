@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Shazam REST Albums API",
+    "version": "5.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Albums",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get album info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.shazam.com/services/amapi/v1/catalog/:endpoint_country/albums/:album_id",
+            "params": [
+              {
+                "name": "endpoint_country",
+                "value": "",
+                "type": "path",
+                "description": "ISO 3166-1 alpha-2 country code for localized results"
+              },
+              {
+                "name": "album_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve metadata for an album by its Shazam ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
