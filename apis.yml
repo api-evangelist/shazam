@@ -223,6 +223,11 @@ apis:
   - type: FinOps
     url: finops/shazam-finops.yml
 common:
+  - type: ParentCompany
+    url: https://apis.io/providers/apple/
+    name: Apple
+    x-relationship: acquired
+    x-evidence: "Originally launched in 2002 and acquired by Apple in 2018, Shazam processes over 1 billion song identifications per month."
   - type: AgenticAccess
     url: agentic-access/shazam-agentic-access.yml
   - type: DomainSecurity
