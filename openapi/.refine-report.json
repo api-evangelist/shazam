@@ -1,12 +1,7 @@
 {
   "provider": "shazam",
   "sources": [
-    "shazam-albums-api-openapi.yml",
-    "shazam-artists-api-openapi.yml",
-    "shazam-charts-api-openapi.yml",
-    "shazam-recognition-api-openapi.yml",
-    "shazam-search-api-openapi.yml",
-    "shazam-tracks-api-openapi.yml"
+    "_original/shazam-rest-api-openapi.yml"
   ],
   "outputs": [
     "shazam-albums-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "shazam-rest-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "shazam-albums-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shazam-artists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shazam-charts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shazam-recognition-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shazam-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "shazam-tracks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

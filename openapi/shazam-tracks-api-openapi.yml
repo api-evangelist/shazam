@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Shazam REST Albums Tracks API
-  description: 'The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).
-
-    '
+  title: Shazam REST Tracks API
+  description: 'The Shazam REST API (reverse-engineered, also available via RapidAPI) provides song recognition from audio signatures, music charts by country/city/genre, artist profiles, track metadata, search, and listening-counter statistics. Base URL variants: amp.shazam.com (recognition), www.shazam.com (catalog/charts), cdn.shazam.com (related tracks).'
   version: 5.0.0
   contact:
     name: Shazam Developer (via Apple / ShazamKit)
@@ -27,9 +25,7 @@ paths:
     get:
       operationId: getTrack
       summary: Get track metadata by track ID
-      description: 'Retrieve full metadata for a Shazam track by its numeric ID, including title, artist, album, genre, artwork URL, ISRC, and streaming links.
-
-        '
+      description: Retrieve full metadata for a Shazam track by its numeric ID, including title, artist, album, genre, artwork URL, ISRC, and streaming links.
       tags:
       - Tracks
       parameters:
@@ -63,9 +59,7 @@ paths:
     get:
       operationId: getRelatedTracks
       summary: Get related tracks
-      description: 'Discover songs similar to a given track based on Shazam''s similarity engine.
-
-        '
+      description: Discover songs similar to a given track based on Shazam's similarity engine.
       servers:
       - url: https://cdn.shazam.com
       tags:
@@ -272,6 +266,13 @@ components:
           type: string
           description: International Standard Recording Code
           example: USUG12004076
+    RelatedTracksResponse:
+      type: object
+      properties:
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
     ListeningCounterResponse:
       type: object
       properties:
@@ -280,23 +281,7 @@ components:
         count:
           type: integer
           description: Total number of times this track has been Shazam'd
-    RelatedTracksResponse:
-      type: object
-      properties:
-        tracks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
   parameters:
-    language:
-      name: language
-      in: path
-      required: true
-      schema:
-        type: string
-        default: en-US
-        example: en-US
-      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
     endpoint_country:
       name: endpoint_country
       in: path
@@ -306,6 +291,15 @@ components:
         default: GB
         example: US
       description: ISO 3166-1 alpha-2 country code for localized results
+    language:
+      name: language
+      in: path
+      required: true
+      schema:
+        type: string
+        default: en-US
+        example: en-US
+      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
   securitySchemes:
     RapidAPIKey:
       type: apiKey
