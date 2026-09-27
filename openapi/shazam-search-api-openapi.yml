@@ -101,6 +101,52 @@ paths:
                 $ref: '#/components/schemas/TrackSearchResponse'
 components:
   schemas:
+    Artist:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '203347991'
+        type:
+          type: string
+          example: artists
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            genreNames:
+              type: array
+              items:
+                type: string
+            artwork:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            url:
+              type: string
+              format: uri
+        relationships:
+          type: object
+    TrackSearchResponse:
+      type: object
+      properties:
+        tracks:
+          type: object
+          properties:
+            hits:
+              type: array
+              items:
+                type: object
+                properties:
+                  track:
+                    $ref: '#/components/schemas/Track'
     Track:
       type: object
       properties:
@@ -239,62 +285,7 @@ components:
                 properties:
                   artist:
                     $ref: '#/components/schemas/Artist'
-    Artist:
-      type: object
-      properties:
-        id:
-          type: string
-          example: '203347991'
-        type:
-          type: string
-          example: artists
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            genreNames:
-              type: array
-              items:
-                type: string
-            artwork:
-              type: object
-              properties:
-                url:
-                  type: string
-                  format: uri
-                width:
-                  type: integer
-                height:
-                  type: integer
-            url:
-              type: string
-              format: uri
-        relationships:
-          type: object
-    TrackSearchResponse:
-      type: object
-      properties:
-        tracks:
-          type: object
-          properties:
-            hits:
-              type: array
-              items:
-                type: object
-                properties:
-                  track:
-                    $ref: '#/components/schemas/Track'
   parameters:
-    endpoint_country:
-      name: endpoint_country
-      in: path
-      required: true
-      schema:
-        type: string
-        default: GB
-        example: US
-      description: ISO 3166-1 alpha-2 country code for localized results
     language:
       name: language
       in: path
@@ -304,6 +295,15 @@ components:
         default: en-US
         example: en-US
       description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
   securitySchemes:
     RapidAPIKey:
       type: apiKey

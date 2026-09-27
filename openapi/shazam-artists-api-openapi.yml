@@ -78,6 +78,36 @@ paths:
                 $ref: '#/components/schemas/AlbumsResponse'
 components:
   schemas:
+    Album:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          example: albums
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            artistName:
+              type: string
+            releaseDate:
+              type: string
+              format: date
+            trackCount:
+              type: integer
+            genreNames:
+              type: array
+              items:
+                type: string
+            artwork:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
     Artist:
       type: object
       properties:
@@ -121,36 +151,6 @@ components:
         next:
           type: string
           format: uri
-    Album:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          example: albums
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            artistName:
-              type: string
-            releaseDate:
-              type: string
-              format: date
-            trackCount:
-              type: integer
-            genreNames:
-              type: array
-              items:
-                type: string
-            artwork:
-              type: object
-              properties:
-                url:
-                  type: string
-                  format: uri
   parameters:
     endpoint_country:
       name: endpoint_country

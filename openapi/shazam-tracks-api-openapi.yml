@@ -140,6 +140,25 @@ paths:
                 items:
                   $ref: '#/components/schemas/ListeningCounterResponse'
 components:
+  parameters:
+    language:
+      name: language
+      in: path
+      required: true
+      schema:
+        type: string
+        default: en-US
+        example: en-US
+      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
   schemas:
     Track:
       type: object
@@ -266,13 +285,6 @@ components:
           type: string
           description: International Standard Recording Code
           example: USUG12004076
-    RelatedTracksResponse:
-      type: object
-      properties:
-        tracks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
     ListeningCounterResponse:
       type: object
       properties:
@@ -281,25 +293,13 @@ components:
         count:
           type: integer
           description: Total number of times this track has been Shazam'd
-  parameters:
-    endpoint_country:
-      name: endpoint_country
-      in: path
-      required: true
-      schema:
-        type: string
-        default: GB
-        example: US
-      description: ISO 3166-1 alpha-2 country code for localized results
-    language:
-      name: language
-      in: path
-      required: true
-      schema:
-        type: string
-        default: en-US
-        example: en-US
-      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
+    RelatedTracksResponse:
+      type: object
+      properties:
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
   securitySchemes:
     RapidAPIKey:
       type: apiKey

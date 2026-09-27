@@ -96,6 +96,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/RecognizeResponse'
 components:
+  parameters:
+    language:
+      name: language
+      in: path
+      required: true
+      schema:
+        type: string
+        default: en-US
+        example: en-US
+      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
   schemas:
     RecognizeResponse:
       type: object
@@ -123,6 +142,37 @@ components:
           $ref: '#/components/schemas/Track'
         tagid:
           type: string
+    RecognizeRequest:
+      type: object
+      description: Audio fingerprint payload for track recognition
+      properties:
+        timezone:
+          type: string
+          example: Europe/Moscow
+        signature:
+          type: object
+          properties:
+            uri:
+              type: string
+              description: Base64-encoded audio signature URI
+            samplems:
+              type: integer
+              description: Duration of the audio sample in milliseconds
+        timestamp:
+          type: integer
+          description: Unix timestamp in milliseconds when the capture was taken
+        context:
+          type: object
+          description: Additional context metadata
+        geolocation:
+          type: object
+          properties:
+            altitude:
+              type: number
+            latitude:
+              type: number
+            longitude:
+              type: number
     Track:
       type: object
       properties:
@@ -248,56 +298,6 @@ components:
           type: string
           description: International Standard Recording Code
           example: USUG12004076
-    RecognizeRequest:
-      type: object
-      description: Audio fingerprint payload for track recognition
-      properties:
-        timezone:
-          type: string
-          example: Europe/Moscow
-        signature:
-          type: object
-          properties:
-            uri:
-              type: string
-              description: Base64-encoded audio signature URI
-            samplems:
-              type: integer
-              description: Duration of the audio sample in milliseconds
-        timestamp:
-          type: integer
-          description: Unix timestamp in milliseconds when the capture was taken
-        context:
-          type: object
-          description: Additional context metadata
-        geolocation:
-          type: object
-          properties:
-            altitude:
-              type: number
-            latitude:
-              type: number
-            longitude:
-              type: number
-  parameters:
-    endpoint_country:
-      name: endpoint_country
-      in: path
-      required: true
-      schema:
-        type: string
-        default: GB
-        example: US
-      description: ISO 3166-1 alpha-2 country code for localized results
-    language:
-      name: language
-      in: path
-      required: true
-      schema:
-        type: string
-        default: en-US
-        example: en-US
-      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
   securitySchemes:
     RapidAPIKey:
       type: apiKey

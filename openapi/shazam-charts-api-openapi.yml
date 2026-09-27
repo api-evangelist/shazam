@@ -83,6 +83,53 @@ paths:
                 $ref: '#/components/schemas/LocationsResponse'
 components:
   schemas:
+    PlaylistTracksResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+        next:
+          type: string
+          format: uri
+    LocationsResponse:
+      type: object
+      description: Chart locations indexed by country and genre
+      properties:
+        countries:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              listid:
+                type: string
+              name:
+                type: string
+              cities:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    listid:
+                      type: string
+                    name:
+                      type: string
+        genres:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              listid:
+                type: string
+              name:
+                type: string
     Track:
       type: object
       properties:
@@ -208,53 +255,6 @@ components:
           type: string
           description: International Standard Recording Code
           example: USUG12004076
-    LocationsResponse:
-      type: object
-      description: Chart locations indexed by country and genre
-      properties:
-        countries:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              listid:
-                type: string
-              name:
-                type: string
-              cities:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    listid:
-                      type: string
-                    name:
-                      type: string
-        genres:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              listid:
-                type: string
-              name:
-                type: string
-    PlaylistTracksResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
-        next:
-          type: string
-          format: uri
   parameters:
     endpoint_country:
       name: endpoint_country
