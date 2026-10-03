@@ -160,6 +160,21 @@ components:
         example: US
       description: ISO 3166-1 alpha-2 country code for localized results
   schemas:
+    RelatedTracksResponse:
+      type: object
+      properties:
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    ListeningCounterResponse:
+      type: object
+      properties:
+        trackId:
+          type: string
+        count:
+          type: integer
+          description: Total number of times this track has been Shazam'd
     Track:
       type: object
       properties:
@@ -285,21 +300,6 @@ components:
           type: string
           description: International Standard Recording Code
           example: USUG12004076
-    ListeningCounterResponse:
-      type: object
-      properties:
-        trackId:
-          type: string
-        count:
-          type: integer
-          description: Total number of times this track has been Shazam'd
-    RelatedTracksResponse:
-      type: object
-      properties:
-        tracks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
   securitySchemes:
     RapidAPIKey:
       type: apiKey

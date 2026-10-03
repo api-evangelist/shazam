@@ -78,36 +78,16 @@ paths:
                 $ref: '#/components/schemas/AlbumsResponse'
 components:
   schemas:
-    Album:
+    AlbumsResponse:
       type: object
       properties:
-        id:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Album'
+        next:
           type: string
-        type:
-          type: string
-          example: albums
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            artistName:
-              type: string
-            releaseDate:
-              type: string
-              format: date
-            trackCount:
-              type: integer
-            genreNames:
-              type: array
-              items:
-                type: string
-            artwork:
-              type: object
-              properties:
-                url:
-                  type: string
-                  format: uri
+          format: uri
     Artist:
       type: object
       properties:
@@ -141,16 +121,36 @@ components:
               format: uri
         relationships:
           type: object
-    AlbumsResponse:
+    Album:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Album'
-        next:
+        id:
           type: string
-          format: uri
+        type:
+          type: string
+          example: albums
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            artistName:
+              type: string
+            releaseDate:
+              type: string
+              format: date
+            trackCount:
+              type: integer
+            genreNames:
+              type: array
+              items:
+                type: string
+            artwork:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
   parameters:
     endpoint_country:
       name: endpoint_country
