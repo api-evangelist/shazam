@@ -120,6 +120,39 @@ components:
         example: US
       description: ISO 3166-1 alpha-2 country code for localized results
   schemas:
+    Artist:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '203347991'
+        type:
+          type: string
+          example: artists
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            genreNames:
+              type: array
+              items:
+                type: string
+            artwork:
+              type: object
+              properties:
+                url:
+                  type: string
+                  format: uri
+                width:
+                  type: integer
+                height:
+                  type: integer
+            url:
+              type: string
+              format: uri
+        relationships:
+          type: object
     TrackSearchResponse:
       type: object
       properties:
@@ -133,6 +166,19 @@ components:
                 properties:
                   track:
                     $ref: '#/components/schemas/Track'
+    ArtistSearchResponse:
+      type: object
+      properties:
+        artists:
+          type: object
+          properties:
+            hits:
+              type: array
+              items:
+                type: object
+                properties:
+                  artist:
+                    $ref: '#/components/schemas/Artist'
     Track:
       type: object
       properties:
@@ -258,52 +304,6 @@ components:
           type: string
           description: International Standard Recording Code
           example: USUG12004076
-    Artist:
-      type: object
-      properties:
-        id:
-          type: string
-          example: '203347991'
-        type:
-          type: string
-          example: artists
-        attributes:
-          type: object
-          properties:
-            name:
-              type: string
-            genreNames:
-              type: array
-              items:
-                type: string
-            artwork:
-              type: object
-              properties:
-                url:
-                  type: string
-                  format: uri
-                width:
-                  type: integer
-                height:
-                  type: integer
-            url:
-              type: string
-              format: uri
-        relationships:
-          type: object
-    ArtistSearchResponse:
-      type: object
-      properties:
-        artists:
-          type: object
-          properties:
-            hits:
-              type: array
-              items:
-                type: object
-                properties:
-                  artist:
-                    $ref: '#/components/schemas/Artist'
   securitySchemes:
     RapidAPIKey:
       type: apiKey

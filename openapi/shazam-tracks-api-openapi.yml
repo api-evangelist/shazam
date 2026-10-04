@@ -140,25 +140,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/ListeningCounterResponse'
 components:
-  parameters:
-    language:
-      name: language
-      in: path
-      required: true
-      schema:
-        type: string
-        default: en-US
-        example: en-US
-      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
-    endpoint_country:
-      name: endpoint_country
-      in: path
-      required: true
-      schema:
-        type: string
-        default: GB
-        example: US
-      description: ISO 3166-1 alpha-2 country code for localized results
   schemas:
     RelatedTracksResponse:
       type: object
@@ -300,6 +281,25 @@ components:
           type: string
           description: International Standard Recording Code
           example: USUG12004076
+  parameters:
+    language:
+      name: language
+      in: path
+      required: true
+      schema:
+        type: string
+        default: en-US
+        example: en-US
+      description: BCP-47 language tag (e.g. en-US, de-DE, ja-JP)
+    endpoint_country:
+      name: endpoint_country
+      in: path
+      required: true
+      schema:
+        type: string
+        default: GB
+        example: US
+      description: ISO 3166-1 alpha-2 country code for localized results
   securitySchemes:
     RapidAPIKey:
       type: apiKey

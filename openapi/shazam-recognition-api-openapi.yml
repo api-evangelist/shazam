@@ -97,32 +97,6 @@ paths:
                 $ref: '#/components/schemas/RecognizeResponse'
 components:
   schemas:
-    RecognizeResponse:
-      type: object
-      properties:
-        matches:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              offset:
-                type: number
-              timeskew:
-                type: number
-              frequencyskew:
-                type: number
-        location:
-          type: object
-        timestamp:
-          type: integer
-        timezone:
-          type: string
-        track:
-          $ref: '#/components/schemas/Track'
-        tagid:
-          type: string
     RecognizeRequest:
       type: object
       description: Audio fingerprint payload for track recognition
@@ -154,6 +128,32 @@ components:
               type: number
             longitude:
               type: number
+    RecognizeResponse:
+      type: object
+      properties:
+        matches:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              offset:
+                type: number
+              timeskew:
+                type: number
+              frequencyskew:
+                type: number
+        location:
+          type: object
+        timestamp:
+          type: integer
+        timezone:
+          type: string
+        track:
+          $ref: '#/components/schemas/Track'
+        tagid:
+          type: string
     Track:
       type: object
       properties:
